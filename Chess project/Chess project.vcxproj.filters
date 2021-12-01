@@ -74,28 +74,28 @@
     <ClCompile Include="Source files\gameException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Rook.cpp">
+    <ClCompile Include="Source files\Bishop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Queen.cpp">
+    <ClCompile Include="Source files\Rook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\pawn.cpp">
+    <ClCompile Include="Source files\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Knight.cpp">
+    <ClCompile Include="Source files\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\King.cpp">
+    <ClCompile Include="Source files\King.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Player.cpp">
+    <ClCompile Include="Source files\Knight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Game.cpp">
+    <ClCompile Include="Source files\pawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header files\Bishop.cpp">
+    <ClCompile Include="Source files\Queen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

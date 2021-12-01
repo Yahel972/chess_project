@@ -156,17 +156,17 @@
     <ClInclude Include="Header files\Piece.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Header files\Bishop.cpp" />
-    <ClCompile Include="Header files\Game.cpp" />
-    <ClCompile Include="Header files\King.cpp" />
-    <ClCompile Include="Header files\Knight.cpp" />
-    <ClCompile Include="Header files\pawn.cpp" />
-    <ClCompile Include="Header files\Player.cpp" />
-    <ClCompile Include="Header files\Queen.cpp" />
-    <ClCompile Include="Header files\Rook.cpp" />
+    <ClCompile Include="Source files\Bishop.cpp" />
     <ClCompile Include="Source files\Board.cpp" />
+    <ClCompile Include="Source files\Game.cpp" />
     <ClCompile Include="Source files\gameException.cpp" />
+    <ClCompile Include="Source files\King.cpp" />
+    <ClCompile Include="Source files\Knight.cpp" />
+    <ClCompile Include="Source files\pawn.cpp" />
     <ClCompile Include="Source files\Piece.cpp" />
+    <ClCompile Include="Source files\Player.cpp" />
+    <ClCompile Include="Source files\Queen.cpp" />
+    <ClCompile Include="Source files\Rook.cpp" />
     <ClCompile Include="Source files\Source.cpp" />
     <ClCompile Include="Source files\stdafx.cpp" />
   </ItemGroup>
