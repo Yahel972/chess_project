@@ -2,6 +2,7 @@
 
 Piece::Piece(char type)
 {
+    this->_type = type;
 }
 
 Piece::~Piece()
@@ -10,5 +11,5 @@ Piece::~Piece()
 
 char Piece::getType() const
 {
-    return 0;
+    this->_type;
 }
