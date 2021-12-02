@@ -1,6 +1,6 @@
 #include "Queen.h"
 
-Queen::Queen()
+Queen::Queen(char type): Piece(type)
 {
 }
 
