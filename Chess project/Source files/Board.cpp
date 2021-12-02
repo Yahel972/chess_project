@@ -7,7 +7,7 @@
 #include "Bishop.h"
 #include "Rook.h"
 #include <cctype>
-
+//Board constructor, initiates the board with pieces
 Board::Board(const std::string& startingCode)
 {
 	for (size_t i = 0, j = 0; i < startingCode.length() / SIDE_SIZE; i++)
@@ -41,7 +41,7 @@ Board::Board(const std::string& startingCode)
 		}
 	}
 }
-
+//D'tor, deallocates the memory crated for the pieces.
 Board::~Board()
 {
 	for (size_t i = 0; i < SIDE_SIZE * SIDE_SIZE; i++)
@@ -52,8 +52,19 @@ Board::~Board()
 		}
 	}
 }
-
-int Board::move(std::string moveCode)
+//moving a piece in the board
+int Board::move(const std::string& moveCode, Board& board)
 {
-
+	gameCodes retCode = (*(this->_pieces[moveCode[0] - ('a' - 1)][moveCode[1] - '0'])).checkMove(moveCode.substr(2, 4), board);
+	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
+	{
+		Piece* temp = this->_pieces[moveCode[0] - ('a' - 1)][moveCode[1] - '0'];
+		this->_pieces[moveCode[0] - ('a' - 1)][moveCode[1] - '0'] = this->_pieces[moveCode[2] - ('a' - 1)][moveCode[4] - '0'];
+		this->_pieces[moveCode[2] - ('a' - 1)][moveCode[4] - '0'] = temp;
+	}
+	else
+	{
+		throw MoveException("Invalid move! error code: ", retCode);
+	}
+	return retCode;
 }

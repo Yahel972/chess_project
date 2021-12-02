@@ -143,10 +143,11 @@
     <ClInclude Include="Header files\Bishop.h" />
     <ClInclude Include="Header files\Board.h" />
     <ClInclude Include="Header files\Game.h" />
-    <ClInclude Include="Header files\gameException.h" />
+    <ClInclude Include="Header files\GameException.h" />
     <ClInclude Include="Header files\gameExceptions.h" />
     <ClInclude Include="Header files\King.h" />
     <ClInclude Include="Header files\Knight.h" />
+    <ClInclude Include="Header files\MoveException.h" />
     <ClInclude Include="Header files\pawn.h" />
     <ClInclude Include="Header files\Pipe.h" />
     <ClInclude Include="Header files\Player.h" />
@@ -161,9 +162,10 @@
     <ClCompile Include="Source files\Bishop.cpp" />
     <ClCompile Include="Source files\Board.cpp" />
     <ClCompile Include="Source files\Game.cpp" />
-    <ClCompile Include="Source files\gameException.cpp" />
+    <ClCompile Include="Source files\GameException.cpp" />
     <ClCompile Include="Source files\King.cpp" />
     <ClCompile Include="Source files\Knight.cpp" />
+    <ClCompile Include="Source files\MoveException.cpp" />
     <ClCompile Include="Source files\pawn.cpp" />
     <ClCompile Include="Source files\Piece.cpp" />
     <ClCompile Include="Source files\Player.cpp" />
