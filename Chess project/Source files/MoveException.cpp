@@ -1,5 +1,5 @@
 #include "MoveException.h"
-#include "Piece.h"
+
 const char* errors[] = { "srcInvalid", "dstInvalid", "invalidCheckOnSelf", "invalidIndex", "invalidMove", "invalidSrcIsDst" };
 
 MoveException::MoveException(const char* type, gameCodes errorCode): GameException(type), _errorCode(errorCode) {}

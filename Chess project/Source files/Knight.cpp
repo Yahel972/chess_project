@@ -1,14 +1,10 @@
 #include "Knight.h"
 
-Knight::Knight()
-{
-}
+Knight::Knight(char type): Piece(type) {}
 
-Knight::~Knight()
-{
-}
+Knight::~Knight() {}
 
-int Knight::checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const
+gameCodes Knight::checkMove(const std::string& newPlace, const Board& board) const
 {
-	return 0;
+	return gameCodes::validMove;
 }

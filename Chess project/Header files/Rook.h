@@ -1,10 +1,10 @@
 #pragma once
 #include "Piece.h"
 
-class Rook: Piece
+class Rook: public Piece
 {
 public:
-	Rook();
+	Rook(char type);
 	virtual ~Rook();
-	virtual int checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const;
+	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const;
 };

@@ -29,7 +29,6 @@
 * History:
 * * 1/11/2009 11:20 PM Jialiang Ge Created
 \***************************************************************************/
-
 #pragma once
 #pragma region Includes
 #include "stdafx.h"
@@ -41,7 +40,9 @@
 #include <tchar.h>
 
 #pragma endregion
-
+#pragma warning(disable:26495)
+#pragma warning(disable:26451)
+#pragma warning(disable:6054)
 #define BUFFER_SIZE		1024 // 1K
 
 class Pipe

@@ -1,5 +1,6 @@
 #pragma once
 #include "gameException.h"
+#include "Piece.h"
 class MoveException: public GameException
 {
 public:

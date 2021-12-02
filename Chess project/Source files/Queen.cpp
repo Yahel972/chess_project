@@ -2,11 +2,9 @@
 
 Queen::Queen(char type): Piece(type) {}
 
-Queen::~Queen()
-{
-}
+Queen::~Queen() {}
 
-int Queen::checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const
+gameCodes Queen::checkMove(const std::string& newPlace, const Board& board) const
 {
-	return 0;
+	return gameCodes::validMove;
 }

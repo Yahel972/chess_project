@@ -1,14 +1,11 @@
 #include "Rook.h"
 
-Rook::Rook()
-{
-}
+Rook::Rook(char type): Piece(type) {}
 
-Rook::~Rook()
-{
-}
 
-int Rook::checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const
+Rook::~Rook() {}
+
+gameCodes Rook::checkMove(const std::string& newPlace, const Board& board) const
 {
-	return 0;
+	return gameCodes::validMove;
 }

@@ -165,13 +165,13 @@
     <ClCompile Include="Source files\GameException.cpp" />
     <ClCompile Include="Source files\King.cpp" />
     <ClCompile Include="Source files\Knight.cpp" />
+    <ClCompile Include="Source files\main.cpp" />
     <ClCompile Include="Source files\MoveException.cpp" />
     <ClCompile Include="Source files\pawn.cpp" />
     <ClCompile Include="Source files\Piece.cpp" />
     <ClCompile Include="Source files\Player.cpp" />
     <ClCompile Include="Source files\Queen.cpp" />
     <ClCompile Include="Source files\Rook.cpp" />
-    <ClCompile Include="Source files\Source.cpp" />
     <ClCompile Include="Source files\stdafx.cpp" />
     <ClCompile Include="Source files\TypeException.cpp" />
   </ItemGroup>

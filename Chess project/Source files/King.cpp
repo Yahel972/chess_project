@@ -1,14 +1,10 @@
 #include "King.h"
 
-King::King()
-{
-}
+King::King(char type): Piece(type) {}
 
-King::~King()
-{
-}
+King::~King() {}
 
-int King::checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const
+gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 {
-	return 0;
+	return gameCodes::validMove;
 }

@@ -1,14 +1,10 @@
 #include "Bishop.h"
 
-Bishop::Bishop()
-{
-}
+Bishop::Bishop(char type): Piece(type) {}
 
-Bishop::~Bishop()
-{
-}
+Bishop::~Bishop() {}
 
-int Bishop::checkMove(const std::string& currentPlace, const std::string& newPlace, const Board& board) const
+gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board) const
 {
-	return 0;
+	return gameCodes::validMove;
 }
