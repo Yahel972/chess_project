@@ -144,6 +144,7 @@
     <ClInclude Include="Header files\Board.h" />
     <ClInclude Include="Header files\Game.h" />
     <ClInclude Include="Header files\gameException.h" />
+    <ClInclude Include="Header files\gameExceptions.h" />
     <ClInclude Include="Header files\King.h" />
     <ClInclude Include="Header files\Knight.h" />
     <ClInclude Include="Header files\pawn.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Header files\stdafx.h" />
     <ClInclude Include="Header files\targetver.h" />
     <ClInclude Include="Header files\Piece.h" />
+    <ClInclude Include="Header files\TypeException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source files\Bishop.cpp" />
@@ -169,6 +171,7 @@
     <ClCompile Include="Source files\Rook.cpp" />
     <ClCompile Include="Source files\Source.cpp" />
     <ClCompile Include="Source files\stdafx.cpp" />
+    <ClCompile Include="Source files\TypeException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

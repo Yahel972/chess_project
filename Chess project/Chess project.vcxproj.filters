@@ -57,6 +57,12 @@
     <ClInclude Include="Header files\Rook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header files\TypeException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header files\gameExceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source files\Source.cpp">
@@ -96,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source files\Queen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source files\TypeException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

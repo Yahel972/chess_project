@@ -1,10 +1,8 @@
 #include "gameException.h"
 
-GameException::GameException(const char* type)
-{
-}
+GameException::GameException(const char* type): _type(type) {}
 
 const char* GameException::what() const
 {
-    return nullptr;
+    return _type;
 }
