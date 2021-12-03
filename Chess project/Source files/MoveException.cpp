@@ -4,7 +4,17 @@ const char* errors[] = { "srcInvalid", "dstInvalid", "invalidCheckOnSelf", "inva
 
 MoveException::MoveException(const char* type, gameCodes errorCode): GameException(type), _errorCode(errorCode) {}
 
+gameCodes MoveException::getErrorCode() const
+{
+    return _errorCode;
+}
+
+const char* MoveException::getErrorMessage() const
+{
+    return errors[_errorCode];
+}
+
 const char* MoveException::what() const
 {
-    return std::string(std::string(_type) + std::to_string(_errorCode) + " (" + errors[_errorCode] + ")").data();
+    return _type;
 }
