@@ -9,6 +9,7 @@
 #include "Bishop.h"
 #include "Rook.h"
 #include "Game.h"
+#include <conio.h>
 
 int main()
 {
@@ -16,6 +17,16 @@ int main()
 	{
 		Board board(DEFUALT_BOARD);
 		board.printBoard();
+		(void)_getche();
+		std::system("cls");
+		board.move("a2a4");
+		board.printBoard();
+		(void)_getche();
+	}
+	catch (const MoveException& moveExc)
+	{
+		std::cout << std::string(moveExc.what() + std::to_string(moveExc.getErrorCode()) + " (" +  moveExc.getErrorMessage()  + ")") << std::endl;
+
 	}
 	catch (const GameException& e)
 	{
