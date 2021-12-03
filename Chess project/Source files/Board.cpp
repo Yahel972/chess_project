@@ -65,7 +65,6 @@ gameCodes Board::move(const std::string& moveCode)
 	gameCodes retCode = (*(this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'])).checkMove(moveCode.substr(2, 4), *this);
 	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
 	{
-		throw MoveException("Invalid move! error code: ", retCode);
 		Piece* temp = this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'];
 		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'] = this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a'];
 		this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a'] = temp;
