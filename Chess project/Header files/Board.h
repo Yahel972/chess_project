@@ -12,7 +12,7 @@ class Board
 public:
 	Board(const std::string& startingCode);
 	~Board();
-	gameCodes move(const std::string& moveCode, Board& board);
+	gameCodes move(const std::string& moveCode);
 	void printBoard() const;
 private:
 	Piece* _pieces[SIDE_SIZE][SIDE_SIZE];
