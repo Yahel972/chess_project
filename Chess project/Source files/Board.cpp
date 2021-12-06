@@ -8,6 +8,7 @@
 #include "Rook.h"
 #include <iostream>
 #include <cctype>
+#include <cassert>
 //Board constructor, initiates the board with pieces
 Board::Board(const std::string& startingCode): _pieces()
 {
@@ -63,24 +64,24 @@ Board::~Board()
 	}
 }
 //moving a piece in the board
-gameCodes Board::move(const std::string& moveCode)
+/*gameCodes Board::move(const std::string& moveCode)
 {
 	gameCodes retCode = (*(this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'])).checkMove(moveCode.substr(2, 4), *this);
 	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
 	{
 		Piece* temp = this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'];
 		std::string tempCurrPlace = this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a']->getCurrPlace();
-		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a']->setCurrPlace(this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a']->getCurrPlace());
-		this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a']->setCurrPlace(tempCurrPlace);
-		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'] = this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a'];
-		this->_pieces[moveCode[3] - '0' - 1][moveCode[2] - 'a'] = temp;
+		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a']->setCurrPlace(this->_pieces[moveCode.substr(2, 4).data()]->getCurrPlace());
+		this->_pieces[moveCode.substr(2, 4).data()]->setCurrPlace(tempCurrPlace);
+		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'] = this->_pieces[moveCode.substr(2, 4).data()];
+		this->_pieces[moveCode.substr(2, 4).data()] = temp;
 	}
 	else
 	{
 		throw MoveException("Invalid move! error code: ", retCode);
 	}
 	return retCode;
-}
+}*/
 
 void Board::printBoard() const
 {
@@ -99,9 +100,12 @@ void Board::printBoard() const
 
 Piece* Board::operator[](const char pos[2]) const
 {
+	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]))
+	{
+		throw IndexException("Invalid index!");
+	}
 	return this->_pieces[pos[1] - '0' - 1][pos[0] - 'a'];
 }
-
 const Piece*& Board::operator[](const char pos[2])
 {
 	return this->_pieces[pos[1] - '0' - 1][pos[0] - 'a'];

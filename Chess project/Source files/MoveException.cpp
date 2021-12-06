@@ -13,8 +13,3 @@ const char* MoveException::getErrorMessage() const
 {
     return errors[_errorCode];
 }
-
-const char* MoveException::what() const
-{
-    return _type;
-}

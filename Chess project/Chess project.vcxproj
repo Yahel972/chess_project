@@ -145,6 +145,7 @@
     <ClInclude Include="Header files\Game.h" />
     <ClInclude Include="Header files\GameException.h" />
     <ClInclude Include="Header files\gameExceptions.h" />
+    <ClInclude Include="Header files\IndexException.h" />
     <ClInclude Include="Header files\King.h" />
     <ClInclude Include="Header files\Knight.h" />
     <ClInclude Include="Header files\MoveException.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Source files\Board.cpp" />
     <ClCompile Include="Source files\Game.cpp" />
     <ClCompile Include="Source files\GameException.cpp" />
+    <ClCompile Include="Source files\IndexException.cpp" />
     <ClCompile Include="Source files\King.cpp" />
     <ClCompile Include="Source files\Knight.cpp" />
     <ClCompile Include="Source files\main.cpp" />

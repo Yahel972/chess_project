@@ -1,6 +1,6 @@
 #include "Knight.h"
 
-Knight::Knight(char type, std::string _currPlace): Piece(type) {}
+Knight::Knight(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 Knight::~Knight() {}
 

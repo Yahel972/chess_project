@@ -12,11 +12,11 @@ class Board
 public:
 	Board(const std::string& startingCode);
 	~Board();
-	gameCodes move(const std::string& moveCode);
+	//gameCodes move(const std::string& moveCode);
 	void printBoard() const;
-private:
-	Piece* _pieces[SIDE_SIZE][SIDE_SIZE];
 	Piece* operator[](const char pos[2] ) const;
 	const Piece* &operator[](const char pos[2]);
+private:
+	Piece* _pieces[SIDE_SIZE][SIDE_SIZE];
 };
 

@@ -1,6 +1,6 @@
 #include "pawn.h"
 
-Pawn::Pawn(char type, std::string _currPlace): Piece(type) {}
+Pawn::Pawn(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 Pawn::~Pawn() {}
 

@@ -1,6 +1,6 @@
 #include "King.h"
 
-King::King(char type, std::string _currPlace): Piece(type) {}
+King::King(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 King::~King() {}
 

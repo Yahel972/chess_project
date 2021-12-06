@@ -1,6 +1,6 @@
 #include "Bishop.h"
 
-Bishop::Bishop(char type, std::string currPlaces): Piece(type) {}
+Bishop::Bishop(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 Bishop::~Bishop() {}
 

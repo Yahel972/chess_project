@@ -1,6 +1,6 @@
 #include "Queen.h"
 
-Queen::Queen(char type, std::string _currPlace): Piece(type) {}
+Queen::Queen(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 Queen::~Queen() {}
 
