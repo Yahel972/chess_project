@@ -2,7 +2,7 @@
 #include <string>
 #include "Board.h"
 #include "Player.h"
-#define DEFUALT_BOARD "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR"
+#define DEFUALT_BOARD "rnbkqbnrpppppppp################################PPPPPPPPRNBQKBNR"
 
 enum gameStatus { active, whiteWin, BlackWin, stalemate };
 

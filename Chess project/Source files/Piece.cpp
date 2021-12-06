@@ -2,7 +2,7 @@
 #include "gameExceptions.h"
 #define VALID_PIECES std::string("rnbkqp#PRNBKQ")
 // constructor
-Piece::Piece(char type): _type(type)
+Piece::Piece(char type, std::string _currPlace): _type(type), _currPlace(_currPlace)
 {
     if (VALID_PIECES.find(type) == std::string::npos)
     {
@@ -17,4 +17,14 @@ Piece::~Piece() {}
 char Piece::getType() const
 {
     return this->_type;
+}
+
+std::string Piece::getCurrPlace() const
+{
+    return _currPlace;
+}
+
+void Piece::setCurrPlace(std::string newVal)
+{
+    _currPlace = newVal;
 }

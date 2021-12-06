@@ -4,7 +4,7 @@
 class Bishop: public Piece
 {
 public:
-	Bishop(char type);
+	Bishop(char type, std::string _currPlace);
 	virtual ~Bishop();
 	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const;
 };

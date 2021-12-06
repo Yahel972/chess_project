@@ -16,5 +16,7 @@ public:
 	void printBoard() const;
 private:
 	Piece* _pieces[SIDE_SIZE][SIDE_SIZE];
+	Piece* operator[](const char pos[2] ) const;
+	const Piece* &operator[](const char pos[2]);
 };
 

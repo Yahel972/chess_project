@@ -4,7 +4,7 @@
 class Queen: public Piece
 {
 public:
-	Queen(char type);
+	Queen(char type, std::string _currPlace);
 	virtual ~Queen();
 	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const;
 };

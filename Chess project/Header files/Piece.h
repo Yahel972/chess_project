@@ -9,11 +9,14 @@ enum gameCodes { validMove, checkOnEnemy, srcInvalid, dstInvalid, invalidCheckOn
 class Piece
 {
 public:
-	Piece(char type);
+	Piece(char type, std::string _currPlace);
 	virtual ~Piece();
 	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const = 0;
 	char getType() const;
+	std::string getCurrPlace() const;
+	void setCurrPlace(std::string newVal);
 protected:
 	char _type;
+	std::string _currPlace;
 };
 
