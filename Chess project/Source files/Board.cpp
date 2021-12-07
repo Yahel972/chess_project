@@ -17,8 +17,8 @@ Board::Board(const std::string& startingCode): _pieces()
 	{
 		for (size_t j = 0; j < SIDE_SIZE; j++)
 		{
-			str[0] = (int)i + 1 + '0';
-			str[1] = (int)j + 'a';
+			str[1] = (int)i + 1 + '0';
+			str[0] = (int)j + 'a';
 			switch (tolower(startingCode[i * SIDE_SIZE + j]))
 			{
 			case 'q':
@@ -63,7 +63,6 @@ Board::~Board()
 		}
 	}
 }
-
 //moving a piece in the board
 gameCodes Board::move(const std::string& moveCode)
 {
@@ -72,6 +71,7 @@ gameCodes Board::move(const std::string& moveCode)
 	{
 		delete (*this)[moveCode.substr(2, 2).data()];
 		(*this)[moveCode.substr(2, 2).data()] = (*this)[moveCode.substr(0, 2).data()];
+		(*this)[moveCode.substr(2, 2).data()]->setCurrPlace(moveCode.substr(0, 2));
 		(*this)[moveCode.substr(0, 2).data()] = nullptr;
 	}
 	else
@@ -80,7 +80,7 @@ gameCodes Board::move(const std::string& moveCode)
 	}
 	return retCode;
 }
-
+//printing the board as chars
 void Board::printBoard() const
 {
 	for (int i = SIDE_SIZE - 1, j = 0; i >= 0; i--)
