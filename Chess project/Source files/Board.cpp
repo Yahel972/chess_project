@@ -12,13 +12,13 @@
 //Board constructor, initiates the board with pieces
 Board::Board(const std::string& startingCode): _pieces()
 {
-	char str[2] = { 0 };
+	char str[3] = { 0 };
 	for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
 	{
 		for (size_t j = 0; j < SIDE_SIZE; j++)
 		{
-			str[0] = i + 1; 
-			str[1] = j + 'a';
+			str[0] = (int)i + 1 + '0';
+			str[1] = (int)j + 'a';
 			switch (tolower(startingCode[i * SIDE_SIZE + j]))
 			{
 			case 'q':
@@ -63,25 +63,27 @@ Board::~Board()
 		}
 	}
 }
+
 //moving a piece in the board
-/*gameCodes Board::move(const std::string& moveCode)
+gameCodes Board::move(const std::string& moveCode)
 {
-	gameCodes retCode = (*(this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'])).checkMove(moveCode.substr(2, 4), *this);
+	Board board = *this;
+	gameCodes retCode = (*(board[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
 	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
 	{
-		Piece* temp = this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'];
-		std::string tempCurrPlace = this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a']->getCurrPlace();
-		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a']->setCurrPlace(this->_pieces[moveCode.substr(2, 4).data()]->getCurrPlace());
-		this->_pieces[moveCode.substr(2, 4).data()]->setCurrPlace(tempCurrPlace);
-		this->_pieces[moveCode[1] - '0' - 1][moveCode[0] - 'a'] = this->_pieces[moveCode.substr(2, 4).data()];
-		this->_pieces[moveCode.substr(2, 4).data()] = temp;
+		Piece* temp = board[moveCode.substr(0, 2).data()];
+		std::string tempCurrPlace = board[moveCode.substr(0, 2).data()]->getCurrPlace();
+		board[moveCode.substr(0, 2).data()]->setCurrPlace(board[moveCode.substr(2, 2).data()]->getCurrPlace());
+		board[moveCode.substr(2, 2).data()]->setCurrPlace(tempCurrPlace);
+		board[moveCode.substr(0, 2).data()] = board[moveCode.substr(2, 2).data()];
+		board[moveCode.substr(2, 2).data()] = temp;
 	}
 	else
 	{
 		throw MoveException("Invalid move! error code: ", retCode);
 	}
 	return retCode;
-}*/
+}
 
 void Board::printBoard() const
 {
@@ -93,20 +95,29 @@ void Board::printBoard() const
 			std::cout << (this->_pieces[i][j] ? this->_pieces[i][j]->getType() : '#') << " ";
 		}
 		std::cout << std::endl;
-
 	}
 	std::cout << "  a b c d e f g h" << std::endl;
 }
-
+// operator[] for getting the value in an index
+// use: boardObject["<a-h><1-8>"] 
+// outcome: the value in cell XY
 Piece* Board::operator[](const char pos[2]) const
 {
-	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]))
+	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]) || pos[1] - '0' > SIDE_SIZE || pos[0] >= 'a' + SIDE_SIZE || pos[1] - '0' < 1 || pos[0] - 'a' < 0)
 	{
 		throw IndexException("Invalid index!");
 	}
 	return this->_pieces[pos[1] - '0' - 1][pos[0] - 'a'];
 }
-const Piece*& Board::operator[](const char pos[2])
+// operator[] for setting the value in an index
+// use: boardObject["<a-h><1-8>"] = boardObject["<other index>"]
+// outcome: the value in cell XY is set to be the value in the right
+// warning! - do not set one value to another without keeping its original value somewhere in the array - casuses memory leak / deletion problems
+Piece*& Board::operator[](const char pos[2])
 {
+	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]) || pos[1] - '0' > SIDE_SIZE || pos[0] >= 'a' + SIDE_SIZE || pos[1] - '0' < 1 || pos[0] - 'a' < 0)
+	{
+		throw IndexException("Invalid index!");
+	}
 	return this->_pieces[pos[1] - '0' - 1][pos[0] - 'a'];
 }

@@ -16,12 +16,10 @@ int main()
 	try
 	{
 		Board board(DEFUALT_BOARD);
-		board["a1"] = board[]
-		std::cout << board["a1"]->getType() << std::endl;
-		//board.printBoard();
+		board.printBoard();
 		(void)_getche();
 		std::system("cls");
-		//board.move("a2a4");
+		board.move("a2a4");
 		board.printBoard();
 		(void)_getche();
 	}
