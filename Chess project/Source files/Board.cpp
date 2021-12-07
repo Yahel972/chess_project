@@ -67,16 +67,12 @@ Board::~Board()
 //moving a piece in the board
 gameCodes Board::move(const std::string& moveCode)
 {
-	Board board = *this;
-	gameCodes retCode = (*(board[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
+	gameCodes retCode = (*((*this)[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
 	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
 	{
-		Piece* temp = board[moveCode.substr(0, 2).data()];
-		std::string tempCurrPlace = board[moveCode.substr(0, 2).data()]->getCurrPlace();
-		board[moveCode.substr(0, 2).data()]->setCurrPlace(board[moveCode.substr(2, 2).data()]->getCurrPlace());
-		board[moveCode.substr(2, 2).data()]->setCurrPlace(tempCurrPlace);
-		board[moveCode.substr(0, 2).data()] = board[moveCode.substr(2, 2).data()];
-		board[moveCode.substr(2, 2).data()] = temp;
+		delete (*this)[moveCode.substr(2, 2).data()];
+		(*this)[moveCode.substr(2, 2).data()] = (*this)[moveCode.substr(0, 2).data()];
+		(*this)[moveCode.substr(0, 2).data()] = nullptr;
 	}
 	else
 	{
@@ -103,7 +99,7 @@ void Board::printBoard() const
 // outcome: the value in cell XY
 Piece* Board::operator[](const char pos[2]) const
 {
-	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]) || pos[1] - '0' > SIDE_SIZE || pos[0] >= 'a' + SIDE_SIZE || pos[1] - '0' < 1 || pos[0] - 'a' < 0)
+	if (!Piece::isIndexValid(std::string(pos)))
 	{
 		throw IndexException("Invalid index!");
 	}
@@ -115,7 +111,7 @@ Piece* Board::operator[](const char pos[2]) const
 // warning! - do not set one value to another without keeping its original value somewhere in the array - casuses memory leak / deletion problems
 Piece*& Board::operator[](const char pos[2])
 {
-	if (pos[2] || !isalpha(pos[0]) || !isdigit(pos[1]) || pos[1] - '0' > SIDE_SIZE || pos[0] >= 'a' + SIDE_SIZE || pos[1] - '0' < 1 || pos[0] - 'a' < 0)
+	if (!Piece::isIndexValid(std::string(pos)))
 	{
 		throw IndexException("Invalid index!");
 	}
