@@ -66,19 +66,26 @@ Board::~Board()
 //moving a piece in the board
 gameCodes Board::move(const std::string& moveCode)
 {
-	gameCodes retCode = (*((*this)[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
-	if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
+	if ((*this)[moveCode.substr(0, 2).data()])
 	{
-		delete (*this)[moveCode.substr(2, 2).data()];
-		(*this)[moveCode.substr(2, 2).data()] = (*this)[moveCode.substr(0, 2).data()];
-		(*this)[moveCode.substr(2, 2).data()]->setCurrPlace(moveCode.substr(0, 2));
-		(*this)[moveCode.substr(0, 2).data()] = nullptr;
+		gameCodes retCode = (*((*this)[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
+		if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
+		{
+			delete (*this)[moveCode.substr(2, 2).data()];
+			(*this)[moveCode.substr(2, 2).data()] = (*this)[moveCode.substr(0, 2).data()];
+			(*this)[moveCode.substr(2, 2).data()]->setCurrPlace(moveCode.substr(2, 2));
+			(*this)[moveCode.substr(0, 2).data()] = nullptr;
+		}
+		else
+		{
+			throw MoveException("Invalid move! error code: ", retCode);
+		}
+		return retCode;
 	}
 	else
 	{
-		throw MoveException("Invalid move! error code: ", retCode);
+		return gameCodes::invalidMove;
 	}
-	return retCode;
 }
 //printing the board as chars
 void Board::printBoard() const
