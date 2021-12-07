@@ -13,15 +13,60 @@
 
 int main()
 {
+	//conroling a piece in the board
 	try
 	{
 		Board board(DEFUALT_BOARD);
 		board.printBoard();
-		(void)_getche();
-		std::system("cls");
-		board.move("a2a4");
-		board.printBoard();
-		(void)_getche();
+		std::string curLoc = "", temp = "";
+		std::cout << "enter piece index to control:" << std::endl;
+		std::cin >> curLoc;
+		//use arrows to move piece
+		while (true)
+		{
+			std::system("cls");
+			board.printBoard();
+			(void)_getch();
+			switch (_getch()) 
+			{ 
+			case 72:
+				temp = curLoc;
+				temp[1] += 1;
+				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+				{
+					throw IndexException("Can't move an empty spot!");
+				}
+				curLoc = temp;
+				break;
+			case 80:
+				temp = curLoc;
+				temp[1] -= 1;
+				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+				{
+					throw IndexException("Can't move an empty spot!");
+				}				curLoc = temp;
+				break;
+			case 77:
+				temp = curLoc;
+				temp[0] += 1;
+				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+				{
+					throw IndexException("Can't move an empty spot!");
+				}				curLoc = temp;
+				break;
+			case 75:
+				temp = curLoc;
+				temp[0] -= 1;
+				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+				{
+					throw IndexException("Can't move an empty spot!");
+				}				curLoc = temp;
+				break;
+			default:
+				std::cout << "witch piece to switch to?" << std::endl;
+				std::cin >> curLoc;
+			}
+		}
 	}
 	catch (const MoveException& moveExc)
 	{
