@@ -28,3 +28,8 @@ void Piece::setCurrPlace(std::string newVal)
 {
     _currPlace = newVal;
 }
+
+bool Piece::isIndexValid(std::string index)
+{
+    return !index[2] && isalpha(index[0]) && isdigit(index[1]) && index[1] - '0' <= SIDE_SIZE && index[0] < 'a' + SIDE_SIZE && index[1] - '0' >= 1 && index[0] - 'a' >= 0;
+}

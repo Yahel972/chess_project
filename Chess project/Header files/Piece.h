@@ -4,7 +4,7 @@
 #pragma warning(disable:26812) //recommends to use 'enum class' instead of 'enum'
 class Board;
 
-enum gameCodes { validMove, checkOnEnemy, srcInvalid, dstInvalid, invalidCheckOnSelf, invalidIndex, invalidMove, invalidSrcIsDst, checkMate };
+enum gameCodes { validMove, checkOnEnemy, invalidCheckOnSelf, invalidIndex, invalidMove, invalidSrcIsDst, checkMate };
 
 class Piece
 {
@@ -15,6 +15,7 @@ public:
 	char getType() const;
 	std::string getCurrPlace() const;
 	void setCurrPlace(std::string newVal);
+	static bool isIndexValid(std::string index);
 protected:
 	char _type;
 	std::string _currPlace;
