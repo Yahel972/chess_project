@@ -67,7 +67,7 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board) const
 		//checking if move causes self king to be threatened
 		if (King::isKingThreatened(this->_type))
 		{
-			gameCodes::invalidCheckOnSelf;
+			return gameCodes::invalidCheckOnSelf;
 		}
 		//checking if the move caused a check on the other king
 		if (King::isKingThreatened(this->_type == 'K' ? 'k' : 'K'))
