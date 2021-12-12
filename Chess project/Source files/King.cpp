@@ -36,17 +36,17 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 		else if (tolower(board[newPlaceArr]->getType()) == 'k') return gameCodes::checkMate;
 
 		//checking if move causes self king to be threatened
-		if (King::isKingThreatened(this->_type)) return gameCodes::invalidCheckOnSelf;
+		if ((King::isKingThreatened(this->_type, board))) return gameCodes::invalidCheckOnSelf;
 		
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K')) && !King::isCheckMate(this->_type)) return gameCodes::checkOnEnemy;
+		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K', board)) && !King::isCheckMate(this->_type)) return gameCodes::checkOnEnemy;
 	}
 	else return gameCodes::invalidMove;
 
 	return gameCodes::validMove;
 }
 
-bool King::isKingThreatened(char type /* k to check for black king, K for the white */)
+bool King::isKingThreatened(char type /* k to check for black king, K for the white */, const Board& board)
 {
 	//TODO: check if king is being threatened by any piece. return true if the king is threatened, else return false.
 	return false;
