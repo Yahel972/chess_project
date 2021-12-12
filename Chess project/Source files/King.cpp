@@ -48,8 +48,39 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 
 bool King::isKingThreatened(char type /* k to check for black king, K for the white */, const Board& board)
 {
-	//TODO: check if king is being threatened by any piece. return true if the king is threatened, else return false.
-	return false;
+	std::string whiteKingPlace = King::findKingsPlace('K', board);
+	std::string blackKingPlace = King::findKingsPlace('k', board);
+
+	if (type == 'k')  // black king
+	{
+		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		{
+			for (size_t j = 0; j < SIDE_SIZE; j++)
+			{
+				if (isupper(board(i, j)->getType()))  // if we have found a white troop
+				{
+					if (board(i, j)->checkMove(blackKingPlace, board) == gameCodes::validMove) return true;  // if the troop has access to the white king's place - it means he is threatened!
+				}
+			}
+		}
+		return false;
+	}
+	else  // type == 'K' - white king
+	{
+		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		{
+			for (size_t j = 0; j < SIDE_SIZE; j++)
+			{
+				if (islower(board(i, j)->getType()))  // if we have found a black troop
+				{
+					if (board(i, j)->checkMove(whiteKingPlace, board) == gameCodes::validMove) return true;  // if the troop has access to the black king's place - it means he is threatened!
+				}
+			}
+		}
+		return false;
+	}
+
+	return false;  // invalid input, nothing special
 }
 
 bool King::isCheckMate(char type /* k to check for black king, K for the white */)
