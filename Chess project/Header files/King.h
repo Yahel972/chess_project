@@ -9,7 +9,7 @@ class King: public Piece
 public:
 	King(char type, std::string _currPlace);
 	virtual ~King();
-	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const;
+	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const override;
 	static bool isKingThreatened(char type, const Board& board);
 	static bool isCheckMate(char type);
 	static std::string findKingsPlace(char type, const Board& board);
