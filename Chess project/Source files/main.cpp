@@ -14,7 +14,7 @@
 int main()
 {
 	//conroling a piece in the board
-	try
+	try 
 	{
 		Board board(DEFUALT_BOARD);
 		board.printBoard();

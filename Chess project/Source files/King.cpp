@@ -1,6 +1,6 @@
 #include "King.h"
 
-King::King(char type, std::string _currPlace): Piece(type, _currPlace) {}
+King::King(char type, std::string _currPlace) : Piece(type, _currPlace) {}
 
 King::~King() {}
 
@@ -29,7 +29,7 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 		(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) + 1))
 	{
 		// checking if the king is stepping on a place that there is already a piece in his team:
-		if (board[newPlaceArr] && (( isupper(board[newPlaceArr]->getType()) && isupper(this->_type)) || (islower(board[newPlaceArr]->getType()) && islower(this->_type))))
+		if (board[newPlaceArr] && ((isupper(board[newPlaceArr]->getType()) && isupper(this->_type)) || (islower(board[newPlaceArr]->getType()) && islower(this->_type))))
 			return gameCodes::invalidMove;
 
 		// checking if the king ate the other king - victory!!!
@@ -37,7 +37,7 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 			return gameCodes::checkMate;
 
 		//checking if move causes self king to be threatened
-		if ((King::isKingThreatened(this->_type, board))) 
+		if ((King::isKingThreatened(this->_type, board)))
 			return gameCodes::invalidCheckOnSelf;
 
 		if (King::isCheckMate(this->_type))
@@ -45,7 +45,7 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 			return gameCodes::checkMate;
 		}
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K', board)) && !King::isCheckMate(this->_type)) 
+		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K', board)) && !King::isCheckMate(this->_type))
 			return gameCodes::checkOnEnemy;
 	}
 	else return gameCodes::invalidMove;
@@ -57,22 +57,11 @@ bool King::isKingThreatened(char type /* k to check for black king, K for the wh
 {
 	std::string whiteKingPlace = King::findKingsPlace('K', board);
 	std::string blackKingPlace = King::findKingsPlace('k', board);
-
-	if (type == 'k' || type == 'K')  // black king
+	if (board[(type == 'K' ? blackKingPlace : whiteKingPlace).data()]->checkMove(type == 'k' ? blackKingPlace : whiteKingPlace, board) == gameCodes::validMove)
 	{
-		for (int i = 0, j = 0; i < SIDE_SIZE; i++)
-		{
-			for (int j = 0; j < SIDE_SIZE; j++)
-			{
-				if (board(i, j) && isupper(board(i, j)->getType()))  // if we have found a white troop
-				{
-					if (board(i, j) && board(i, j)->checkMove(type == 'k' ? blackKingPlace : whiteKingPlace, board) == gameCodes::validMove)
-						return true;  // if the troop has access to the white king's place - it means he is threatened!
-				}
-			}
-		}
-		return false;
+		return true;  // if the troop has access to the white king's place - it means he is threatened!
 	}
+
 	return false;  // invalid input, nothing special
 }
 
