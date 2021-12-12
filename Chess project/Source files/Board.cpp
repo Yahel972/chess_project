@@ -128,8 +128,10 @@ Piece*& Board::operator[](const char pos[2])
 // operator() - that is being used as operator [][] 
 Piece* Board::operator()(int x, int y) const
 {
-	char x_coordinate = char(x + 97);  // a-h
-	char y_coordinate = char(y + 49);  // 1-8
+	char coordinate[3];
 
-	return this[{ x_coordinate, y_coordinate }];
+	coordinate[0] = char(x + 97);  // a-h
+	coordinate[1] = char(y + 49);  // 1-8
+
+	return (*this)[coordinate];
 }
