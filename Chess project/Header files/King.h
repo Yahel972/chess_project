@@ -1,8 +1,6 @@
 #pragma once
 #include "Piece.h"
-#include "TypeException.h"
-
-#pragma warning(disable: 4996)
+#include "gameExceptions.h"
 
 class King: public Piece
 {

@@ -16,8 +16,7 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 	char newXIndex = newPlace[0];
 	char newYIndex = newPlace[1];
 
-	char newPlaceArr[2];
-	strcpy(newPlaceArr, newPlace.c_str());
+	const char* newPlaceArr = newPlace.data();
 
 	// checking if the move is valid:
 	if ((int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 1) ||
@@ -30,16 +29,24 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board) const
 		(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) + 1))
 	{
 		// checking if the king is stepping on a place that there is already a piece in his team:
-		if ((isupper(board[newPlaceArr]->getType()) && isupper(this->_type)) || (islower(board[newPlaceArr]->getType()) && islower(this->_type))) return gameCodes::invalidMove;
+		if (board[newPlaceArr] && (( isupper(board[newPlaceArr]->getType()) && isupper(this->_type)) || (islower(board[newPlaceArr]->getType()) && islower(this->_type))))
+			return gameCodes::invalidMove;
 
 		// checking if the king ate the other king - victory!!!
-		else if (tolower(board[newPlaceArr]->getType()) == 'k') return gameCodes::checkMate;
+		else if (board[newPlaceArr] && tolower(board[newPlaceArr]->getType()) == 'k')
+			return gameCodes::checkMate;
 
 		//checking if move causes self king to be threatened
-		if ((King::isKingThreatened(this->_type, board))) return gameCodes::invalidCheckOnSelf;
-		
+		if ((King::isKingThreatened(this->_type, board))) 
+			return gameCodes::invalidCheckOnSelf;
+
+		if (King::isCheckMate(this->_type))
+		{
+			return gameCodes::checkMate;
+		}
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K', board)) && !King::isCheckMate(this->_type)) return gameCodes::checkOnEnemy;
+		if ((King::isKingThreatened(this->_type == 'K' ? 'k' : 'K', board)) && !King::isCheckMate(this->_type)) 
+			return gameCodes::checkOnEnemy;
 	}
 	else return gameCodes::invalidMove;
 
@@ -51,35 +58,21 @@ bool King::isKingThreatened(char type /* k to check for black king, K for the wh
 	std::string whiteKingPlace = King::findKingsPlace('K', board);
 	std::string blackKingPlace = King::findKingsPlace('k', board);
 
-	if (type == 'k')  // black king
+	if (type == 'k' || type == 'K')  // black king
 	{
-		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		for (int i = 0, j = 0; i < SIDE_SIZE; i++)
 		{
-			for (size_t j = 0; j < SIDE_SIZE; j++)
+			for (int j = 0; j < SIDE_SIZE; j++)
 			{
-				if (isupper(board(i, j)->getType()))  // if we have found a white troop
+				if (board(i, j) && isupper(board(i, j)->getType()))  // if we have found a white troop
 				{
-					if (board(i, j)->checkMove(blackKingPlace, board) == gameCodes::validMove) return true;  // if the troop has access to the white king's place - it means he is threatened!
+					if (board(i, j) && board(i, j)->checkMove(type == 'k' ? blackKingPlace : whiteKingPlace, board) == gameCodes::validMove)
+						return true;  // if the troop has access to the white king's place - it means he is threatened!
 				}
 			}
 		}
 		return false;
 	}
-	else  // type == 'K' - white king
-	{
-		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
-		{
-			for (size_t j = 0; j < SIDE_SIZE; j++)
-			{
-				if (islower(board(i, j)->getType()))  // if we have found a black troop
-				{
-					if (board(i, j)->checkMove(whiteKingPlace, board) == gameCodes::validMove) return true;  // if the troop has access to the black king's place - it means he is threatened!
-				}
-			}
-		}
-		return false;
-	}
-
 	return false;  // invalid input, nothing special
 }
 
@@ -93,30 +86,23 @@ bool King::isCheckMate(char type /* k to check for black king, K for the white *
 
 std::string King::findKingsPlace(char type, const Board& board)
 {
-	if (type == 'k')  // finding black king
+	if (type == 'k' || type == 'K')  // finding black king
 	{
-		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		for (int i = 0, j = 0; i < SIDE_SIZE; i++)
 		{
-			for (size_t j = 0; j < SIDE_SIZE; j++)
+			for (int j = 0; j < SIDE_SIZE; j++)
 			{
-				if (board(i, j)->getType() == 'k')  // if we have found the black king - returning it's place
+				if (board(i, j) && board(i, j)->getType() == type)  // if we have found the black king - returning it's place
 				{
 					return board(i, j)->getCurrPlace();
 				}
 			}
 		}
 	}
-	else  // type == 'K' - finding white king
+	else
 	{
-		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
-		{
-			for (size_t j = 0; j < SIDE_SIZE; j++)
-			{
-				if (board(i, j)->getType() == 'K')  // if we have found the white king - returning it's place
-				{
-					return board(i, j)->getCurrPlace();
-				}
-			}
-		}
+		throw TypeException("Type given isn't a king!");
 	}
+	//in case king wasn't found
+	return std::string("a1");
 }
