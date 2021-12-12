@@ -12,4 +12,5 @@ public:
 	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const;
 	static bool isKingThreatened(char type, const Board& board);
 	static bool isCheckMate(char type);
+	static std::string findKingsPlace(char type, const Board& board);
 };

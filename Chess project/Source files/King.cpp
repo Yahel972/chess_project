@@ -59,3 +59,33 @@ bool King::isCheckMate(char type /* k to check for black king, K for the white *
 	//and call isKingThreatened() every time to check if there is any move possible.
 	return false;
 }
+
+std::string King::findKingsPlace(char type, const Board& board)
+{
+	if (type == 'k')  // finding black king
+	{
+		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		{
+			for (size_t j = 0; j < SIDE_SIZE; j++)
+			{
+				if (board(i, j)->getType() == 'k')  // if we have found the black king - returning it's place
+				{
+					return board(i, j)->getCurrPlace();
+				}
+			}
+		}
+	}
+	else  // type == 'K' - finding white king
+	{
+		for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+		{
+			for (size_t j = 0; j < SIDE_SIZE; j++)
+			{
+				if (board(i, j)->getType() == 'K')  // if we have found the white king - returning it's place
+				{
+					return board(i, j)->getCurrPlace();
+				}
+			}
+		}
+	}
+}
