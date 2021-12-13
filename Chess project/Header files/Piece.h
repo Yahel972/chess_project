@@ -11,7 +11,7 @@ class Piece
 public:
 	Piece(char type, std::string _currPlace);
 	virtual ~Piece();
-	virtual gameCodes checkMove(const std::string& newPlace, const Board& board) const = 0;
+	virtual gameCodes checkMove(const std::string& newPlace, const Board& board, bool dontRecurse = false) const = 0;
 	char getType() const;
 	std::string getCurrPlace() const;
 	void setCurrPlace(std::string newVal);

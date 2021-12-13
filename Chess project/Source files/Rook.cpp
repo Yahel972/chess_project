@@ -6,7 +6,7 @@ Rook::Rook(char type, std::string _currPlace): Piece(type, _currPlace) {}
 //D'tor
 Rook::~Rook() {}
 //checking if the move is valid or not
-gameCodes Rook::checkMove(const std::string& newPlace, const Board& board) const
+gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool dontRecurse) const
 {
 	//checking if the dst index is valid
 	if (Piece::isIndexValid(newPlace))
@@ -64,13 +64,20 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board) const
 				}
 			}
 		}
+		if (dontRecurse)
+		{
+			return gameCodes::validMove;
+		}
+		std::string brdAsStr = board.getBoardAsString();
+		Board tempBoard(brdAsStr);
+		tempBoard.move(std::string(this->_currPlace + newPlace), true);
 		//checking if move causes self king to be threatened
-		if (King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board))
+		if (King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', tempBoard))
 		{
 			return gameCodes::invalidCheckOnSelf;
 		}
 		//checking if the move caused a check on the other king
-		if (King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', board))
+		if (King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', tempBoard))
 		{
 			//if king is threatened, checking if its a checkmate
 			if (King::isCheckMate(isupper(this->_type) ? 'k' : 'K'))
