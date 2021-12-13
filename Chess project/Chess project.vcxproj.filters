@@ -36,9 +36,6 @@
     <ClInclude Include="Header files\GameException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header files\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header files\Bishop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -92,9 +89,6 @@
     <ClCompile Include="Source files\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source files\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source files\King.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,10 +107,10 @@
     <ClCompile Include="Source files\MoveException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source files\main.cpp">
+    <ClCompile Include="Source files\IndexException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source files\IndexException.cpp">
+    <ClCompile Include="Source files\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

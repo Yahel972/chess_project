@@ -30,11 +30,8 @@ gameCodes King::checkMove(const std::string& newPlace, const Board& board, bool 
 	{
 		// checking if the king is stepping on a place that there is already a piece in his team:
 		if (board[newPlaceArr] && ((isupper(board[newPlaceArr]->getType()) && isupper(this->_type)) || (islower(board[newPlaceArr]->getType()) && islower(this->_type))))
-			return gameCodes::invalidMove;
+			return gameCodes::dstInvalid;
 
-		// checking if the king ate the other king - victory!!!
-		else if (board[newPlaceArr] && tolower(board[newPlaceArr]->getType()) == 'k')
-			return gameCodes::checkMate;
 		if (dontRecurse)
 		{
 			return gameCodes::validMove;

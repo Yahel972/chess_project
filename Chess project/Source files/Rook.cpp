@@ -55,7 +55,7 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool 
 				//check if the piece is trying to eat one of its allies, and if it is, retun the invalidMove code
 				if (curr && isupper(curr->getType()) == isupper(this->_type) || hasAte)
 				{
-					return gameCodes::invalidMove;
+					return gameCodes::dstInvalid;
 				}
 				//checking if the piece is eating one of the enemy pieces
 				if (curr && isupper(curr->getType()) != isupper(this->_type))

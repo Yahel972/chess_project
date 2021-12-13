@@ -151,7 +151,6 @@
     <ClInclude Include="Header files\MoveException.h" />
     <ClInclude Include="Header files\pawn.h" />
     <ClInclude Include="Header files\Pipe.h" />
-    <ClInclude Include="Header files\Player.h" />
     <ClInclude Include="Header files\Queen.h" />
     <ClInclude Include="Header files\Rook.h" />
     <ClInclude Include="Header files\stdafx.h" />
@@ -167,13 +166,12 @@
     <ClCompile Include="Source files\IndexException.cpp" />
     <ClCompile Include="Source files\King.cpp" />
     <ClCompile Include="Source files\Knight.cpp" />
-    <ClCompile Include="Source files\main.cpp" />
     <ClCompile Include="Source files\MoveException.cpp" />
     <ClCompile Include="Source files\pawn.cpp" />
     <ClCompile Include="Source files\Piece.cpp" />
-    <ClCompile Include="Source files\Player.cpp" />
     <ClCompile Include="Source files\Queen.cpp" />
     <ClCompile Include="Source files\Rook.cpp" />
+    <ClCompile Include="Source files\Source.cpp" />
     <ClCompile Include="Source files\stdafx.cpp" />
     <ClCompile Include="Source files\TypeException.cpp" />
   </ItemGroup>

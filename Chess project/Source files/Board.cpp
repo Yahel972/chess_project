@@ -78,6 +78,7 @@ gameCodes Board::move(const std::string& moveCode, bool dontRecurse)
 		}
 		else
 		{
+			//return gameCodes::srcInvalid;
 			throw MoveException("Invalid move! error code: ", retCode);
 		}
 		return retCode;

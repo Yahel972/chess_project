@@ -4,7 +4,7 @@
 #pragma warning(disable:26812) //recommends to use 'enum class' instead of 'enum'
 class Board;
 
-enum gameCodes { validMove, checkOnEnemy, invalidCheckOnSelf, invalidIndex, invalidMove, invalidSrcIsDst, checkMate };
+enum gameCodes { validMove, checkOnEnemy, srcInvalid, dstInvalid, invalidCheckOnSelf, invalidIndex, invalidMove, invalidSrcIsDst, checkMate };
 
 class Piece
 {
