@@ -12,8 +12,9 @@ class Board
 public:
 	Board(const std::string& startingCode);
 	~Board();
-	gameCodes move(const std::string& moveCode);
 	void printBoard() const;
+	std::string getBoardAsString() const;
+	gameCodes move(const std::string& moveCode, bool dontRecurse = false);
 	Piece* operator[](const char pos[2] ) const;
 	Piece* &operator[](const char pos[2]);
 	Piece* operator() (int x, int y) const;

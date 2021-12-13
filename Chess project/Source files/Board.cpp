@@ -64,11 +64,11 @@ Board::~Board()
 	}
 }
 //moving a piece in the board
-gameCodes Board::move(const std::string& moveCode)
+gameCodes Board::move(const std::string& moveCode, bool dontRecurse)
 {
 	if ((*this)[moveCode.substr(0, 2).data()])
 	{
-		gameCodes retCode = (*((*this)[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
+		gameCodes retCode = dontRecurse ? gameCodes::validMove : (*((*this)[moveCode.substr(0, 2).data()])).checkMove(moveCode.substr(2, 2), *this);
 		if (retCode == gameCodes::validMove || retCode == gameCodes::checkOnEnemy || retCode == gameCodes::checkMate)
 		{
 			delete (*this)[moveCode.substr(2, 2).data()];
@@ -90,16 +90,28 @@ gameCodes Board::move(const std::string& moveCode)
 //printing the board as chars
 void Board::printBoard() const
 {
-	for (int i = SIDE_SIZE - 1, j = 0; i >= 0; i--)
+	for (int i = SIDE_SIZE - 1; i >= 0; i--)
 	{
 		std::cout << i + 1 << " ";
-		for (size_t j = 0; j < SIDE_SIZE; j++)
+		for (int j = 0; j < SIDE_SIZE; j++)
 		{
 			std::cout << (this->_pieces[i][j] ? this->_pieces[i][j]->getType() : '#') << " ";
 		}
 		std::cout << std::endl;
 	}
 	std::cout << "  a b c d e f g h" << std::endl;
+}
+std::string Board::getBoardAsString() const
+{
+	std::string boardStr;
+	for (int i = 0; i != SIDE_SIZE; i++)
+	{
+		for (int j = 0; j < SIDE_SIZE; j++)
+		{
+			boardStr +=(this->_pieces[i][j] ? this->_pieces[i][j]->getType() : '#');
+		}
+	}
+	return boardStr;
 }
 // operator[] for getting the value in an index
 // use: boardObject["<a-h><1-8>"] 
