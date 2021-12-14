@@ -10,6 +10,10 @@
 #include "Rook.h"
 #include "Game.h"
 #include <conio.h>
+#include <windows.h>
+
+void showCursor();
+void hideCursor();
 
 int main()
 {
@@ -17,54 +21,107 @@ int main()
 	try 
 	{
 		Board board(DEFUALT_BOARD);
+		hideCursor();
 		board.printBoard();
 		std::string curLoc = "", temp = "";
 		std::cout << "enter piece index to control:" << std::endl;
+		showCursor();
 		std::cin >> curLoc;
+		std::system("cls");
+		hideCursor();
 		//use arrows to move piece
 		while (true)
 		{
-			std::system("cls");
+			std::cout << "\033[H";
 			board.printBoard();
-			(void)_getch();
-			switch (_getch()) 
-			{ 
-			case 72:
-				temp = curLoc;
-				temp[1] += 1;
-				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+			unsigned char ch = _getch();
+			if (ch == 224)
+			{
+				switch (_getch())
 				{
-					throw IndexException("Can't move an empty spot!");
+				case 72:
+					temp = curLoc;
+					temp[1] += 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}
+					curLoc = temp;
+					break;
+				case 80:
+					temp = curLoc;
+					temp[1] -= 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				case 77:
+					temp = curLoc;
+					temp[0] += 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				case 75:
+					temp = curLoc;
+					temp[0] -= 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				default:
+					std::cout << "witch piece to switch to?" << std::endl;
+					showCursor();
+					std::cin >> curLoc;
+					std::system("cls");
+					hideCursor();
 				}
-				curLoc = temp;
-				break;
-			case 80:
-				temp = curLoc;
-				temp[1] -= 1;
-				if (board.move(curLoc + temp) == gameCodes::invalidMove)
+			}
+			else
+			{
+				switch (ch)
 				{
-					throw IndexException("Can't move an empty spot!");
-				}				curLoc = temp;
-				break;
-			case 77:
-				temp = curLoc;
-				temp[0] += 1;
-				if (board.move(curLoc + temp) == gameCodes::invalidMove)
-				{
-					throw IndexException("Can't move an empty spot!");
-				}				curLoc = temp;
-				break;
-			case 75:
-				temp = curLoc;
-				temp[0] -= 1;
-				if (board.move(curLoc + temp) == gameCodes::invalidMove)
-				{
-					throw IndexException("Can't move an empty spot!");
-				}				curLoc = temp;
-				break;
-			default:
-				std::cout << "witch piece to switch to?" << std::endl;
-				std::cin >> curLoc;
+				case 'e':
+					temp = curLoc;
+					temp[1] += 1;
+					temp[0] += 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}
+					curLoc = temp;
+					break;
+				case 'd':
+					temp = curLoc;
+					temp[1] -= 1;
+					temp[0] += 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				case 'q':
+					temp = curLoc;
+					temp[0] -= 1;
+					temp[1] += 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				case 'a':
+					temp = curLoc;
+					temp[0] -= 1;
+					temp[1] -= 1;
+					if (board.move(curLoc + temp) == gameCodes::invalidMove)
+					{
+						throw IndexException("Can't move an empty spot!");
+					}				curLoc = temp;
+					break;
+				}
 			}
 		}
 	}
@@ -82,4 +139,22 @@ int main()
 		std::cout << "Uknown exception: " << e.what() << std::endl;
 	}
 	return 0;
+}
+
+void showCursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 10;
+	info.bVisible = true;
+	SetConsoleCursorInfo(consoleHandle, &info);
+}
+
+void hideCursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 10;
+	info.bVisible = false;
+	SetConsoleCursorInfo(consoleHandle, &info);
 }
