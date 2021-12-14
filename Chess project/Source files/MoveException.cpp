@@ -11,5 +11,5 @@ gameCodes MoveException::getErrorCode() const
 
 const char* MoveException::getErrorMessage() const
 {
-    return errors[_errorCode];
+    return errors[_errorCode - 2];
 }

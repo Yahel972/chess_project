@@ -85,7 +85,7 @@ gameCodes Board::move(const std::string& moveCode, bool dontRecurse)
 	}
 	else
 	{
-		return gameCodes::invalidMove;
+		return gameCodes::srcInvalid;
 	}
 }
 //printing the board as chars

@@ -82,13 +82,13 @@ bool King::isCheckMate(char type /* k to check for black king, K for the white *
 
 std::string King::findKingsPlace(char type, const Board& board)
 {
-	if (type == 'k' || type == 'K')  // finding black king
+	if (type == 'k' || type == 'K')  
 	{
 		for (int i = 0, j = 0; i < SIDE_SIZE; i++)
 		{
 			for (int j = 0; j < SIDE_SIZE; j++)
 			{
-				if (board(i, j) && board(i, j)->getType() == type)  // if we have found the black king - returning it's place
+				if (board(i, j) && board(i, j)->getType() == type) 
 				{
 					return board(i, j)->getCurrPlace();
 				}

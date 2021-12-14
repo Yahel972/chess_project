@@ -110,7 +110,7 @@
     <ClCompile Include="Source files\IndexException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source files\Source.cpp">
+    <ClCompile Include="Source files\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
