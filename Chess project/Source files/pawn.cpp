@@ -57,7 +57,7 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 			return gameCodes::checkMate;
 		}
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(' ', board, newPlace)) && !King::isCheckMate(this->_type))
+		if ((King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', board)) && !King::isCheckMate(this->_type))
 			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes
 			return gameCodes::checkOnEnemy;
 	}
