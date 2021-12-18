@@ -52,7 +52,7 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool 
 			//checking that we dont get source piece as current moving piece
 			if (curr != this)
 			{
-				//check if the piece is trying to eat one of its allies, and if it is, retun the invalidMove code
+				//check if the piece is trying to eat one of its allies, and if it is, retun the dstInvalid code
 				if (curr && isupper(curr->getType()) == isupper(this->_type) || hasAte)
 				{
 					return gameCodes::dstInvalid;

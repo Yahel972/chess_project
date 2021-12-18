@@ -6,5 +6,5 @@ Pawn::~Pawn() {}
 
 gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool dontRecurse) const
 {
-	return gameCodes::checkMate;
+	return gameCodes::checkOnEnemy;
 }

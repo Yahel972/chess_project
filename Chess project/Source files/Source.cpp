@@ -7,7 +7,9 @@ in order to read and write information from and to the Backend
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
-
+#include "board.h"
+#include "Game.h"
+#include "gameExceptions.h"
 using std::cout;
 using std::endl;
 using std::string;
@@ -15,12 +17,15 @@ using std::string;
 
 int main()
 {
+
+
+	std::system("start \" \" \"C:\\magshimim projects\\year 2\\semester a\\C++\\Week 7\\project\\chessGraphics.exe");
+	Sleep(1000);
 	srand(time_t(NULL));
 
-	
 	Pipe p;
 	bool isConnect = p.connect();
-	
+
 	string ans;
 	while (!isConnect)
 	{
@@ -34,13 +39,13 @@ int main()
 			Sleep(5000);
 			isConnect = p.connect();
 		}
-		else 
+		else
 		{
 			p.close();
 			return 0;
 		}
 	}
-	
+
 
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
@@ -61,29 +66,37 @@ int main()
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-
+	Board b(DEFUALT_BOARD);
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
-		
 		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+	try
+		{
+		msgToGraphics[0] = (char)(b.move(msgFromGraphics) + '0');
+	}
+	catch (const MoveException& moveExc)
+	{
+		std::cout << std::string(moveExc.what() + std::to_string(moveExc.getErrorCode()) + " (" + moveExc.getErrorMessage() + ")") << std::endl;
 
-		/******* JUST FOR EREZ DEBUGGING ******/
-		int r = rand() % 10; // just for debugging......
-		msgToGraphics[0] = (char)(1 + '0');
+	}
+	catch (const GameException& e)
+	{
+		std::cout << "GameException has occurred: " << e.what() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Uknown exception: " << e.what() << std::endl;
+	}
 		msgToGraphics[1] = 0;
-		/******* JUST FOR EREZ DEBUGGING ******/
-
 
 		// return result to graphics		
-		p.sendMessageToGraphics(msgToGraphics);   
+		p.sendMessageToGraphics(msgToGraphics);
 
 		// get message from graphics
 		msgFromGraphics = p.getMessageFromGraphics();
 	}
-
 	p.close();
 	return 0;
 }

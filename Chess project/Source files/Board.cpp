@@ -76,11 +76,11 @@ gameCodes Board::move(const std::string& moveCode, bool dontRecurse)
 			(*this)[moveCode.substr(2, 2).data()]->setCurrPlace(moveCode.substr(2, 2));
 			(*this)[moveCode.substr(0, 2).data()] = nullptr;
 		}
-		else
+		/*else
 		{
-			//return gameCodes::srcInvalid;
-			throw MoveException("Invalid move! error code: ", retCode);
-		}
+			return gameCodes::srcInvalid;
+			//throw MoveException("Invalid move! error code: ", retCode);
+		}*/
 		return retCode;
 	}
 	else
