@@ -35,14 +35,14 @@ gameCodes Knight::checkMove(const std::string& newPlace, const Board& board, boo
 			return gameCodes::validMove;
 		
 		//checking if move causes self king to be threatened
-		if ((King::isKingThreatened(' ', board, newPlace)))
+		if ((King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board)))
 			return gameCodes::invalidCheckOnSelf;
 
 		if (King::isCheckMate(this->_type))
 			return gameCodes::checkMate;
 		
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board, newPlace)) && !King::isCheckMate(this->_type))
+		if ((King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board)) && !King::isCheckMate(this->_type))
 			return gameCodes::checkOnEnemy;
 	}
 	else return gameCodes::invalidMove;
