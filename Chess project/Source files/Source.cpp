@@ -19,7 +19,7 @@ int main()
 {
 
 
-	std::system("start \" \" \"C:\\magshimim projects\\year 2\\semester a\\C++\\Week 7\\project\\chessGraphics.exe");
+	std::system("start \" \" ..\\chessGraphics.exe");
 	Sleep(1000);
 	srand(time_t(NULL));
 
