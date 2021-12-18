@@ -45,24 +45,26 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 
 		if (dontRecurse)
 		{
-			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes
+			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
 			return gameCodes::validMove;
 		}
+
 		//checking if move causes self king to be threatened
 		if ((King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board)))
 			return gameCodes::invalidCheckOnSelf;
 
 		if (King::isCheckMate(this->_type))
-		{
 			return gameCodes::checkMate;
-		}
+
 		//checking if the move caused a check on the other king and NOT checkMate: just a check
 		if ((King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', board)) && !King::isCheckMate(this->_type))
-			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes
+		{
+			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
 			return gameCodes::checkOnEnemy;
+		}
 	}
-	else return gameCodes::invalidMove;
+	else return gameCodes::invalidMove;  // invalid move
 	
-	const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes
+	const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
 	return gameCodes::validMove;
 }
