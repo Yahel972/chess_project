@@ -19,7 +19,7 @@ int main()
 {
 
 
-	std::system("start \" \" ..\\chessGraphics.exe");
+	std::system("taskkill /F /IM chessGraphics.exe & start \" \" ..\\chessGraphics.exe");
 	Sleep(1000);
 	srand(time_t(NULL));
 
@@ -51,7 +51,7 @@ int main()
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBQKBNR1"); // just example...
+	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
 	/*
 	rnbkqbnr
 	pppppppp
@@ -72,9 +72,10 @@ int main()
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		// YOUR CODE
+msgToGraphics[0] = (char)(b.move(msgFromGraphics) + '0');
 	try
 		{
-		msgToGraphics[0] = (char)(b.move(msgFromGraphics) + '0');
+		
 	}
 	catch (const MoveException& moveExc)
 	{
