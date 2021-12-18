@@ -1,6 +1,6 @@
 #include "Bishop.h"
 #include "King.h"
-
+#include <iostream>
 Bishop::Bishop(char type, std::string _currPlace): Piece(type, _currPlace) {}
 
 Bishop::~Bishop() {}
@@ -16,33 +16,33 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 			return gameCodes::invalidSrcIsDst;
 		}
 		//checking if the move is diagonal or not
-		if (newPlace[0] == _currPlace[0] || newPlace[1] == _currPlace[1])//|| newPlace[0] - _currPlace[0] != newPlace[1] - _currPlace[1])
+		if (newPlace[0] == _currPlace[0] || newPlace[1] == _currPlace[1] || abs(newPlace[0] - _currPlace[0]) != abs(newPlace[1] - _currPlace[1]))
 		{
 			return gameCodes::invalidMove;
 		}
 		//checking if the piece has already ate an enemy piece, because his turn ends there
 		bool hasAte = false;
 		Piece* curr = nullptr;
-		int i = 0;
-		for (i = _currPlace[0] - 'a'; i != newPlace[0] - 'a'; newPlace[0] > _currPlace[0] ? i++ : i--);
+		for (int j = _currPlace[1] , i = _currPlace[0] ;
+			i != newPlace[0] + (newPlace[0] > _currPlace[0] ? 1 : -1) && j != newPlace[1] + (newPlace[1] > _currPlace[1] ? 1 : -1);
+			newPlace[0] > _currPlace[0] ? i++ : i--, newPlace[1] > _currPlace[1] ? j++ : j--)
 		{
-			for (int j = _currPlace[1] - '0'; j != newPlace[1] - '0'; newPlace[1] > _currPlace[1] ? j++ : j--)
+			std::cout << "i - " << char(i) << " j - " << char(j) << std::endl;
+
+			//getting the current piece from the board
+			curr = board(i - 'a' , j - '0' - 1);
+			//checking that we dont get source piece as current moving piece
+			if (curr != this)
 			{
-				//getting the current piece from the board
-				curr = board(i, j);
-				//checking that we dont get source piece as current moving piece
-				if (curr != this)
+				//check if the piece is trying to eat one of its allies, and if it is, retun the dstInvalid code
+				if (curr && isupper(curr->getType()) == isupper(this->_type) || hasAte)
 				{
-					//check if the piece is trying to eat one of its allies, and if it is, retun the dstInvalid code
-					if (curr && isupper(curr->getType()) == isupper(this->_type) || hasAte)
-					{
-						return gameCodes::dstInvalid;
-					}
-					//checking if the piece is eating one of the enemy pieces
-					if (curr && isupper(curr->getType()) != isupper(this->_type))
-					{
-						hasAte = true;
-					}
+					return gameCodes::dstInvalid;
+				}
+				//checking if the piece is eating one of the enemy pieces
+				if (curr && isupper(curr->getType()) != isupper(this->_type))
+				{
+					hasAte = true;
 				}
 			}
 		}
