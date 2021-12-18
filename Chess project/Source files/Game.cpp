@@ -7,8 +7,8 @@ Game::~Game() {}
 gameCodes Game::MakeMove(std::string moveCode)
 {
     gameCodes retCode = gameCodes::validMove;
-    if (isupper(_gameBoard[moveCode.substr(0, 2).data()]->getType()) && _gameStatus == gameStatus::whiteTurn ||
-        islower(_gameBoard[moveCode.substr(0, 2).data()]->getType()) && _gameStatus == gameStatus::blackTurn)
+    if (_gameBoard[moveCode.substr(0, 2).data()] && ((_gameBoard[moveCode.substr(0, 2).data()]->getType()) && _gameStatus == gameStatus::whiteTurn ||
+        islower(_gameBoard[moveCode.substr(0, 2).data()]->getType()) && _gameStatus == gameStatus::blackTurn))
     {
         retCode = _gameBoard.move(moveCode);
         _gameStatus = (gameStatus)!_gameStatus;
