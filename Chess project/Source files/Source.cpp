@@ -7,7 +7,6 @@ in order to read and write information from and to the Backend
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
-#include "board.h"
 #include "Game.h"
 #include "gameExceptions.h"
 using std::cout;
@@ -51,7 +50,7 @@ int main()
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
+	strcpy_s(msgToGraphics, DEFUALT_BOARD"1"); // just example...
 	/*
 	rnbkqbnr
 	pppppppp
@@ -66,16 +65,16 @@ int main()
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-	Board b(DEFUALT_BOARD);
+	Game game;
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		// YOUR CODE
-msgToGraphics[0] = (char)(b.move(msgFromGraphics) + '0');
+
 	try
-		{
-		
+	{
+		msgToGraphics[0] = (char)(game.MakeMove(msgFromGraphics) + '0');
 	}
 	catch (const MoveException& moveExc)
 	{

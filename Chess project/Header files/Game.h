@@ -10,6 +10,7 @@ class Game
 public:
 	Game(const std::string& startingCode = DEFUALT_BOARD);
 	~Game();
+	gameCodes MakeMove(std::string moveCode);
 	bool isEnd() const;
 	gameStatus getGameStatus() const;
 private:
