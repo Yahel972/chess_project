@@ -62,11 +62,10 @@ bool King::isKingThreatened(char type /* k to check for black king, K for the wh
 		for (int j = 0; j < SIDE_SIZE; j++)
 		{
 			temp = board(i, j);
-			if (board(i, j) && isupper(board(i, j)->getType()) != isupper(type))  // if we have found a white troop
-			{
-				if (board(i, j)->checkMove(kingsPlace_, board, true) == gameCodes::validMove)
-					return true;  // if the troop has access to the white king's place - it means he is threatened!
-			}
+			
+			if (temp && temp->checkMove(kingsPlace_, board, true) == gameCodes::validMove)
+				return true;  // if the troop has access to the white king's place - it means he is threatened!
+			
 		}
 	}
 	return false;  // invalid input, nothing special

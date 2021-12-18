@@ -1,5 +1,6 @@
 #pragma once
 #include "Piece.h"
+#include "King.h"
 
 class Knight: public Piece
 {

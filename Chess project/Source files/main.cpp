@@ -73,7 +73,7 @@ int main()
 					}				curLoc = temp;
 					break;
 				default:
-					std::cout << "witch piece to switch to?" << std::endl;
+					std::cout << "which piece to switch to?" << std::endl;
 					showCursor();
 					std::cin >> curLoc;
 					std::system("cls");

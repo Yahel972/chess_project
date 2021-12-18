@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "Board.h"
-#define DEFUALT_BOARD "rnbkqbnrpppppppp################################PPPPPPPPRNBQKBNR"
+#define DEFUALT_BOARD "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR"
 
 enum gameStatus { whiteTurn, blackTurn, whiteWin, BlackWin, stalemate };
 
