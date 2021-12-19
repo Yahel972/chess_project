@@ -24,16 +24,16 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 		isValidMove =
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 2) && (this->_isFirstMove) && (!board[newPlaceArr]) ||  // if it is the first turn the pawn can move double spots!
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 1) && (!board[newPlaceArr]) ||
-			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) + 1) && islower(board[newPlaceArr]->getType()) ||  // eats an enemy troop
-			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) + 1) && islower(board[newPlaceArr]->getType());  // eats an enemy troop
+			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) + 1) && board[newPlaceArr] && islower(board[newPlaceArr]->getType()) ||  // eats an enemy troop
+			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) + 1) && board[newPlaceArr] && islower(board[newPlaceArr]->getType());  // eats an enemy troop
 	}
 	else  // black pawn
 	{
 		isValidMove =
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) - 2) && (this->_isFirstMove) && (!board[newPlaceArr]) ||  // if it is the first turn the pawn can move double spots!
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) - 1) && (!board[newPlaceArr]) ||
-			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) - 1) && isupper(board[newPlaceArr]->getType()) ||  // eats an enemy troop
-			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) - 1) && isupper(board[newPlaceArr]->getType());  // eats an enemy troop
+			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) - 1) && board[newPlaceArr] && isupper(board[newPlaceArr]->getType()) ||  // eats an enemy troop
+			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) - 1) && board[newPlaceArr] && isupper(board[newPlaceArr]->getType());  // eats an enemy troop
 	}
 
 	// checking if the move is valid:
