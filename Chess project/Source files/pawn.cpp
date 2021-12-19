@@ -16,21 +16,28 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 	char newYIndex = newPlace[1];
 
 	const char* newPlaceArr = newPlace.data();
+	std::string helperSpot = "";
+	helperSpot += newPlace[0];
+	helperSpot += newPlace[1];
 
 	bool isValidMove = false;
 
 	if (isupper(this->getType()))  // white pawn
 	{
+		helperSpot[1]++;
+
 		isValidMove =
-			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 2) && (this->_isFirstMove) && (!board[newPlaceArr]) ||  // if it is the first turn the pawn can move double spots!
+			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 2) && (this->_isFirstMove) && (!board[newPlaceArr]) && (!board[helperSpot.data()]) ||  // if it is the first turn the pawn can move double spots!
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) + 1) && (!board[newPlaceArr]) ||
 			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) + 1) && board[newPlaceArr] && islower(board[newPlaceArr]->getType()) ||  // eats an enemy troop
 			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) + 1) && board[newPlaceArr] && islower(board[newPlaceArr]->getType());  // eats an enemy troop
 	}
 	else  // black pawn
 	{
+		helperSpot[1]--;
+
 		isValidMove =
-			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) - 2) && (this->_isFirstMove) && (!board[newPlaceArr]) ||  // if it is the first turn the pawn can move double spots!
+			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) - 2) && (this->_isFirstMove) && (!board[newPlaceArr]) && (!board[helperSpot.data()]) ||  // if it is the first turn the pawn can move double spots!
 			(int(currentXIndex) == int(newXIndex) && int(currentYIndex) == int(newYIndex) - 1) && (!board[newPlaceArr]) ||
 			(int(currentXIndex) == int(newXIndex) + 1 && int(currentYIndex) == int(newYIndex) - 1) && board[newPlaceArr] && isupper(board[newPlaceArr]->getType()) ||  // eats an enemy troop
 			(int(currentXIndex) == int(newXIndex) - 1 && int(currentYIndex) == int(newYIndex) - 1) && board[newPlaceArr] && isupper(board[newPlaceArr]->getType());  // eats an enemy troop
