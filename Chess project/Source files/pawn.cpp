@@ -49,18 +49,28 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 			return gameCodes::validMove;
 		}
 
+		std::string brdAsStr = board.getBoardAsString();
+		Board tempBoard(brdAsStr);
+		tempBoard.move(std::string(this->_currPlace + newPlace), true);
 		//checking if move causes self king to be threatened
-		if ((King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', board)))
-			return gameCodes::invalidCheckOnSelf;
-
-		if (King::isCheckMate(this->_type))
-			return gameCodes::checkMate;
-
-		//checking if the move caused a check on the other king and NOT checkMate: just a check
-		if ((King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', board)) && !King::isCheckMate(this->_type))
+		if (King::isPieceThreatened(isupper(this->_type) ? 'K' : 'k', tempBoard))
 		{
-			const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
-			return gameCodes::checkOnEnemy;
+			return gameCodes::invalidCheckOnSelf;
+		}
+		//checking if the move caused a check on the other king
+		if (King::isPieceThreatened(isupper(this->_type) ? 'k' : 'K', tempBoard))
+		{
+			//if king is threatened, checking if its a checkmate
+			if (King::isCheckMate(isupper(this->_type) ? 'k' : 'K', tempBoard))
+			{
+				return gameCodes::checkMate;
+			}
+			//else its just a check
+			else
+			{
+				const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
+				return gameCodes::checkOnEnemy;
+			}
 		}
 	}
 	else return gameCodes::invalidMove;  // invalid move

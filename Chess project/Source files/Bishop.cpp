@@ -27,7 +27,6 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 			i != newPlace[0] + (newPlace[0] > _currPlace[0] ? 1 : -1) && j != newPlace[1] + (newPlace[1] > _currPlace[1] ? 1 : -1);
 			newPlace[0] > _currPlace[0] ? i++ : i--, newPlace[1] > _currPlace[1] ? j++ : j--)
 		{
-			std::cout << "i - " << char(i) << " j - " << char(j) << std::endl;
 
 			//getting the current piece from the board
 			curr = board(i - 'a' , j - '0' - 1);
@@ -54,15 +53,15 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 		Board tempBoard(brdAsStr);
 		tempBoard.move(std::string(this->_currPlace + newPlace), true);
 		//checking if move causes self king to be threatened
-		if (King::isKingThreatened(isupper(this->_type) ? 'K' : 'k', tempBoard))
+		if (King::isPieceThreatened(isupper(this->_type) ? 'K' : 'k', tempBoard))
 		{
 			return gameCodes::invalidCheckOnSelf;
 		}
 		//checking if the move caused a check on the other king
-		if (King::isKingThreatened(isupper(this->_type) ? 'k' : 'K', tempBoard))
+		if (King::isPieceThreatened(isupper(this->_type) ? 'k' : 'K', tempBoard))
 		{
 			//if king is threatened, checking if its a checkmate
-			if (King::isCheckMate(isupper(this->_type) ? 'k' : 'K'))
+			if (King::isCheckMate(isupper(this->_type) ? 'k' : 'K', board))
 			{
 				return gameCodes::checkMate;
 			}
