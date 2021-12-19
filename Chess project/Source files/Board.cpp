@@ -49,6 +49,12 @@ Board::Board(const std::string& startingCode): _pieces()
 		}
 	}
 }
+// copy constructor
+Board::Board(const Board& other)
+{
+	std::string otherBoardCode = other.getBoardAsString();
+	*this = Board(otherBoardCode);
+}
 //D'tor, deallocates the memory crated for the pieces.
 Board::~Board()
 {
@@ -97,6 +103,8 @@ void Board::printBoard() const
 	}
 	std::cout << "  a b c d e f g h" << std::endl;
 }
+
+
 std::string Board::getBoardAsString() const
 {
 	std::string boardStr;

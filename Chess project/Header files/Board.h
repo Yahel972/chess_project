@@ -11,6 +11,7 @@ class Board
 {
 public:
 	Board(const std::string& startingCode);
+	Board(const Board& other);
 	~Board();
 	void printBoard() const;
 	std::string getBoardAsString() const;
