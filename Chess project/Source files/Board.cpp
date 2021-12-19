@@ -53,14 +53,14 @@ Board::Board(const std::string& startingCode): _pieces()
 Board::Board(const Board& other)
 {
 	std::string otherBoardCode = other.getBoardAsString();
-	*this = Board(otherBoardCode);
+	(*this) = Board(otherBoardCode);
 }
 //D'tor, deallocates the memory crated for the pieces.
 Board::~Board()
 {
-	for (size_t i = 0, j = 0; i < SIDE_SIZE; i++)
+	for (int i = 0, j = 0; i < SIDE_SIZE; i++)
 	{
-		for (size_t j = 0; j < SIDE_SIZE; j++)
+		for (int j = 0; j < SIDE_SIZE; j++)
 		{
 			if (this->_pieces[i][j])
 			{
