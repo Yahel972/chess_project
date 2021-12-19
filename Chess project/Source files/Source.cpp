@@ -16,9 +16,7 @@ using std::string;
 
 int main()
 {
-
-
-	std::system("taskkill /F /IM chessGraphics.exe & start \" \" ..\\chessGraphics.exe");
+	std::system("taskkill /F /IM chessGraphics.exe > nul 2>&1 & start \" \" ..\\chessGraphics.exe");
 	Sleep(1000);
 	srand(time_t(NULL));
 
