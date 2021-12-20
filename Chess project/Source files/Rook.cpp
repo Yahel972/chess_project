@@ -108,17 +108,17 @@ bool Rook::canAvoidCheck(const Board& board) const
 
 	for (int i = 0; i < 8; i++)
 	{
-		rightMoves[i] += char(this->getCurrPlace()[0] + 1);
+		rightMoves[i] += char(this->getCurrPlace()[0] + i +1);
 		rightMoves[i] += char(this->getCurrPlace()[1]);
 
-		leftMoves[i] += char(this->getCurrPlace()[0] - 1);
+		leftMoves[i] += char(this->getCurrPlace()[0] - i - 1);
 		leftMoves[i] += char(this->getCurrPlace()[1]);
 
 		upMoves[i] += char(this->getCurrPlace()[0]);
-		upMoves[i] += char(this->getCurrPlace()[1] + 1);
+		upMoves[i] += char(this->getCurrPlace()[1] + i + 1);
 
 		downMoves[i] += char(this->getCurrPlace()[0]);
-		downMoves[i] += char(this->getCurrPlace()[1] - 1);
+		downMoves[i] += char(this->getCurrPlace()[1] - i - 1);
 	}
 
 	for (int i = 0; i < 8; i++)  // checking each move 
