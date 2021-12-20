@@ -101,5 +101,33 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool 
 // function checks if a rook can avoid a chess to happen
 bool Rook::canAvoidCheck(const Board& board) const
 {
+	std::string rightMoves[8] = {};
+	std::string leftMoves[8] = {};
+	std::string upMoves[8] = {};
+	std::string downMoves[8] = {};
+
+	for (int i = 0; i < 8; i++)
+	{
+		rightMoves[i] += char(this->getCurrPlace()[0] + 1);
+		rightMoves[i] += char(this->getCurrPlace()[1]);
+
+		leftMoves[i] += char(this->getCurrPlace()[0] - 1);
+		leftMoves[i] += char(this->getCurrPlace()[1]);
+
+		upMoves[i] += char(this->getCurrPlace()[0]);
+		upMoves[i] += char(this->getCurrPlace()[1] + 1);
+
+		downMoves[i] += char(this->getCurrPlace()[0]);
+		downMoves[i] += char(this->getCurrPlace()[1] - 1);
+	}
+
+	for (int i = 0; i < 8; i++)  // checking each move 
+	{
+		if (this->checkMove(rightMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(leftMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(upMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(downMoves[i], board) == gameCodes::validMove) return true;
+	}
+	
 	return false;
 }
