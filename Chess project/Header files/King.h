@@ -11,4 +11,5 @@ public:
 	static bool isPieceThreatened(char type, const Board& board, std::string kingsPlace="");
 	static bool isCheckMate(char type, const Board& board);
 	static std::string findPiecePlace(char type, const Board& board);
+	virtual bool canAvoidCheck(const Board& board) const override;
 };

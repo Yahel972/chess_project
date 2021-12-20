@@ -16,6 +16,7 @@ public:
 	std::string getCurrPlace() const;
 	void setCurrPlace(std::string newVal);
 	static bool isIndexValid(std::string index);
+	virtual bool canAvoidCheck(const Board& board) const = 0;
 protected:
 	char _type;
 	std::string _currPlace;
