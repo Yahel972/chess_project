@@ -79,6 +79,7 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 	return gameCodes::validMove;
 }
 
+// function checks if a bishop can avoid a chess to happen
 bool Bishop::canAvoidCheck(const Board& board) const
 {
 	return false;

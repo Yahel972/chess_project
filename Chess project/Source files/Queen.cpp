@@ -15,6 +15,7 @@ gameCodes Queen::checkMove(const std::string& newPlace, const Board& board, bool
 	return Bishop::checkMove(newPlace, board, dontRecurse);
 }
 
+// function checks if a queen can avoid a chess to happen
 bool Queen::canAvoidCheck(const Board& board) const
 {
 	return false;

@@ -65,7 +65,7 @@ gameCodes Knight::checkMove(const std::string& newPlace, const Board& board, boo
 // function checks if a knight can avoid a chess to happen
 bool Knight::canAvoidCheck(const Board& board) const
 {
-	std::string newPlaces[8] = {};
+	std::string newPlaces[8] = {};  // a knight has 8 different moving possibilities
 
 	newPlaces[0] += char(this->getCurrPlace()[0] - 2);
 	newPlaces[0] += char(this->getCurrPlace()[1] - 1);

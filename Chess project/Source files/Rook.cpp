@@ -98,6 +98,7 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool 
 	return gameCodes::validMove;
 }
 
+// function checks if a rook can avoid a chess to happen
 bool Rook::canAvoidCheck(const Board& board) const
 {
 	return false;

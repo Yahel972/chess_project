@@ -86,9 +86,10 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 	return gameCodes::validMove;
 }
 
+// function checks if a pawn can avoid a chess to happen
 bool Pawn::canAvoidCheck(const Board& board) const
 {
-	std::string newPlaces[4] = {};  // for possible moves
+	std::string newPlaces[4] = {};  // a pawn has 8 different moving possibilities
 
 	if (isupper(this->getType()))  // white pawn
 	{

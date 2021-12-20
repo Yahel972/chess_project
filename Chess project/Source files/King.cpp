@@ -130,7 +130,7 @@ std::string King::findPiecePlace(char type, const Board& board)
 // function checks if a king can avoid a chess to happen
 bool King::canAvoidCheck(const Board& board) const
 {
-	std::string newPlaces[8] = {};
+	std::string newPlaces[8] = {};  // a king has 8 different moving possibilities
 
 	newPlaces[0] += char(this->getCurrPlace()[0] - 1);
 	newPlaces[0] += char(this->getCurrPlace()[1] - 1);
