@@ -14,3 +14,8 @@ gameCodes Queen::checkMove(const std::string& newPlace, const Board& board, bool
 	//else treating it as move of a Bishop 
 	return Bishop::checkMove(newPlace, board, dontRecurse);
 }
+
+bool Queen::canAvoidCheck(const Board& board) const
+{
+	return false;
+}

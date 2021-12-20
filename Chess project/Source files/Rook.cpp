@@ -97,3 +97,8 @@ gameCodes Rook::checkMove(const std::string& newPlace, const Board& board, bool 
 	}
 	return gameCodes::validMove;
 }
+
+bool Rook::canAvoidCheck(const Board& board) const
+{
+	return false;
+}

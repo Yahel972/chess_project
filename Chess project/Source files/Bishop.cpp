@@ -78,3 +78,8 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 	}
 	return gameCodes::validMove;
 }
+
+bool Bishop::canAvoidCheck(const Board& board) const
+{
+	return false;
+}
