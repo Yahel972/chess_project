@@ -85,3 +85,44 @@ gameCodes Pawn::checkMove(const std::string& newPlace, const Board& board, bool 
 	const_cast<Pawn*>(this)->_isFirstMove = false;  // making it available for changes and updating the first move flag
 	return gameCodes::validMove;
 }
+
+bool Pawn::canAvoidCheck(const Board& board) const
+{
+	std::string newPlaces[4] = {};  // for possible moves
+
+	if (isupper(this->getType()))  // white pawn
+	{
+		newPlaces[0] += char(this->getCurrPlace()[0]);
+		newPlaces[0] += char(this->getCurrPlace()[1] + 1);
+
+		newPlaces[1] += char(this->getCurrPlace()[0]);
+		newPlaces[1] += char(this->getCurrPlace()[1] + 2);
+
+		newPlaces[2] += char(this->getCurrPlace()[0] + 1);
+		newPlaces[2] += char(this->getCurrPlace()[1] + 1);
+
+		newPlaces[3] += char(this->getCurrPlace()[0] - 1);
+		newPlaces[3] += char(this->getCurrPlace()[1] + 1);
+	}
+	else  // black pawn
+	{
+		newPlaces[0] += char(this->getCurrPlace()[0]);
+		newPlaces[0] += char(this->getCurrPlace()[1] - 1);
+
+		newPlaces[1] += char(this->getCurrPlace()[0]);
+		newPlaces[1] += char(this->getCurrPlace()[1] - 2);
+
+		newPlaces[2] += char(this->getCurrPlace()[0] + 1);
+		newPlaces[2] += char(this->getCurrPlace()[1] - 1);
+
+		newPlaces[3] += char(this->getCurrPlace()[0] - 1);
+		newPlaces[3] += char(this->getCurrPlace()[1] - 1);
+	}
+
+	for (int i = 0; i < 4; i++)  // checking each move 
+	{
+		if (this->checkMove(newPlaces[i], board, true) == gameCodes::validMove) return true;
+	}
+
+	return false;
+}
