@@ -61,3 +61,40 @@ gameCodes Knight::checkMove(const std::string& newPlace, const Board& board, boo
 
 	return gameCodes::validMove;
 }
+
+// function checks if a knight can avoid a chess to happen
+bool Knight::canAvoidCheck(const Board& board) const
+{
+	std::string newPlaces[8] = {};
+
+	newPlaces[0] += char(this->getCurrPlace()[0] - 2);
+	newPlaces[0] += char(this->getCurrPlace()[1] - 1);
+
+	newPlaces[1] += char(this->getCurrPlace()[0] - 2);
+	newPlaces[1] += char(this->getCurrPlace()[1] + 1);
+
+	newPlaces[2] += char(this->getCurrPlace()[0] + 2);
+	newPlaces[2] += char(this->getCurrPlace()[1] - 1);
+
+	newPlaces[3] += char(this->getCurrPlace()[0] + 2);
+	newPlaces[3] += char(this->getCurrPlace()[1] + 1);
+
+	newPlaces[4] += char(this->getCurrPlace()[0] + 1);
+	newPlaces[4] += char(this->getCurrPlace()[1] + 2);
+
+	newPlaces[5] += char(this->getCurrPlace()[0] + 1);
+	newPlaces[5] += char(this->getCurrPlace()[1] - 2);
+
+	newPlaces[6] += char(this->getCurrPlace()[0] - 1);
+	newPlaces[6] += char(this->getCurrPlace()[1] + 2);
+
+	newPlaces[7] += char(this->getCurrPlace()[0] - 1);
+	newPlaces[7] += char(this->getCurrPlace()[1] - 2);
+
+	for (int i = 0; i < 8; i++)  // checking each move 
+	{
+		if (this->checkMove(newPlaces[i], board, true) == gameCodes::validMove) return true;
+	}
+
+	return false;
+}
