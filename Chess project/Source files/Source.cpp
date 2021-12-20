@@ -48,7 +48,7 @@ int main()
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, DEFUALT_BOARD"1"); // just example...
+	strcpy_s(msgToGraphics, DEFUALT_BOARD"0"); // just example...
 	/*
 	rnbkqbnr
 	pppppppp

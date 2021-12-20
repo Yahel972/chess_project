@@ -2,7 +2,7 @@
 #include "King.h"
 #include <iostream>
 #pragma warning(disable:26812) //recommends to use 'enum class' instead of 'enum'
-Game::Game(const std::string& startingCode): _gameBoard(Board(startingCode)), _gameStatus(gameStatus::whiteTurn) {}
+Game::Game(const std::string& startingCode): _gameBoard(Board(startingCode)), _gameStatus(gameStatus::blackTurn) {}
 
 Game::~Game() {}
 
