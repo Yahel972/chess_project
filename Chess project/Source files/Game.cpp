@@ -1,7 +1,11 @@
 #include "Game.h"
 #include "King.h"
 #include <iostream>
-#pragma warning(disable:26812) //recommends to use 'enum class' instead of 'enum'
+#pragma warning(disable:26812)
+
+Game::Game(): _gameBoard(Board(DEFUALT_BOARD)), _gameStatus(gameStatus::blackTurn) {}
+
+//recommends to use 'enum class' instead of 'enum'
 Game::Game(const std::string& startingCode): _gameBoard(Board(startingCode)), _gameStatus(gameStatus::blackTurn) {}
 
 Game::~Game() {}
@@ -15,7 +19,6 @@ gameCodes Game::MakeMove(std::string moveCode)
         retCode = _gameBoard.move(moveCode);
         if (King::isCheckMate(this->_gameStatus == gameStatus::blackTurn ? 'k' : 'K', this->_gameBoard))
         {
-            this->_gameStatus = gameStatus::blackTurn ? gameStatus::BlackWin : gameStatus::whiteWin;
             return gameCodes::checkMate;
         }
 

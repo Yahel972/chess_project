@@ -8,6 +8,7 @@ enum gameStatus { whiteTurn, blackTurn, whiteWin, BlackWin, stalemate };
 class Game
 {
 public:
+	Game();
 	Game(const std::string& startingCode = DEFUALT_BOARD);
 	~Game();
 	gameCodes MakeMove(std::string moveCode);
