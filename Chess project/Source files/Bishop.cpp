@@ -82,5 +82,33 @@ gameCodes Bishop::checkMove(const std::string& newPlace, const Board& board, boo
 // function checks if a bishop can avoid a chess to happen
 bool Bishop::canAvoidCheck(const Board& board) const
 {
+	std::string upRightMoves[8] = {};
+	std::string upLeftMoves[8] = {};
+	std::string downRightMoves[8] = {};
+	std::string downLeftMoves[8] = {};
+
+	for (int i = 0; i < 8; i++)
+	{
+		upRightMoves[i] += char(this->getCurrPlace()[0] + i + 1);
+		upRightMoves[i] += char(this->getCurrPlace()[1] + i + 1);
+
+		upLeftMoves[i] += char(this->getCurrPlace()[0] - i - 1);
+		upLeftMoves[i] += char(this->getCurrPlace()[1] + i + 1);
+
+		downRightMoves[i] += char(this->getCurrPlace()[0] + i + 1);
+		downRightMoves[i] += char(this->getCurrPlace()[1] - i - 1);
+
+		downLeftMoves[i] += char(this->getCurrPlace()[0] - i - 1);
+		downLeftMoves[i] += char(this->getCurrPlace()[1] - i - 1);
+	}
+
+	for (int i = 0; i < 8; i++)  // checking each move 
+	{
+		if (this->checkMove(upRightMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(upLeftMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(downRightMoves[i], board) == gameCodes::validMove) return true;
+		if (this->checkMove(downLeftMoves[i], board) == gameCodes::validMove) return true;
+	}
+
 	return false;
 }
