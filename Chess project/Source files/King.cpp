@@ -92,7 +92,7 @@ bool King::isPieceThreatened(char type /* k to check for black king, K for the w
 
 bool King::isCheckMate(char type /* k to check for black king, K for the white */, const Board& board)
 {
-	if (King::isPieceThreatened(isupper(type) ? 'K' : 'k', board)) // if there is a check
+	if (King::isPieceThreatened(isupper(type) ? 'k' : 'K', board)) // if there is a check
 	{
 		for (int i = 0; i < SIDE_SIZE; i++)
 		{
