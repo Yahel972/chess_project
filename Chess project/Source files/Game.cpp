@@ -2,10 +2,8 @@
 #include "King.h"
 #include <iostream>
 #pragma warning(disable:26812)
-
-Game::Game(): _gameBoard(Board(DEFUALT_BOARD)), _gameStatus(gameStatus::blackTurn) {}
-
 //recommends to use 'enum class' instead of 'enum'
+
 Game::Game(const std::string& startingCode): _gameBoard(Board(startingCode)), _gameStatus(gameStatus::blackTurn) {}
 
 Game::~Game() {}
@@ -17,7 +15,7 @@ gameCodes Game::MakeMove(std::string moveCode)
         (islower(_gameBoard[moveCode.substr(0, 2).data()]->getType()) && _gameStatus == gameStatus::blackTurn)))
     {
         retCode = _gameBoard.move(moveCode);
-        if (King::isCheckMate(this->_gameStatus == gameStatus::blackTurn ? 'k' : 'K', this->_gameBoard))
+        if (King::isCheckMate(this->_gameStatus == gameStatus::blackTurn ? 'k' : 'K', this->_gameBoard, this))
         {
             return gameCodes::checkMate;
         }
