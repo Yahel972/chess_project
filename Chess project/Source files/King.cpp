@@ -90,40 +90,9 @@ bool King::isPieceThreatened(char type /* k to check for black king, K for the w
 	return pieceIsThreatened;
 }
 
-bool King::isCheckMate(char type, const Board& board)
+bool King::isCheckMate(char type /* k to check for black king, K for the white */, const Board& board)
 {
-	//Piece* king = board[findPiecePlace(type, board).data()];
-	////check if there is more than one threathener
-	//if (piecesThreatheningCount == 1)
-	//{
-	//	//if there isn't:
-	//	//check if you can take out or block the threathener
-	//	//TODO: check if piece can be blocked
-	//	if (isPieceThreatened(' ', board, threathenerLocation) && !isPieceThreatened(type, board))
-	//	{
-	//		std::cout << threathenerLocation << std::endl;
-	//		return false;
-	//	}
-	//}
-	////if there is:
-	////check if king can escape
-	//int opList[] = {0, 1, -1};
-	//bool isTrue = true;
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	for (int j = 0; j < 3; j++)
-	//	{
-	//		if (king->checkMove(std::string(1, king->getCurrPlace()[0] + opList[i]) + 
-	//			std::string(1, king->getCurrPlace()[1] + opList[j]), board, true) == gameCodes::validMove
-	//			&& !King::isPieceThreatened(' ', board, king->getCurrPlace()))
-	//		{
-	//			isTrue = false;
-	//		}
-	//	}
-
-	//return isTrue;
-	//}
-	return false;
+	
 }
 
 std::string King::findPiecePlace(char type, const Board& board)
@@ -140,4 +109,41 @@ std::string King::findPiecePlace(char type, const Board& board)
 	}
 	//in case piece wasn't found
 	return std::string("a1");
+}
+
+// function checks if a king can avoid a chess to happen
+bool King::canAvoidCheck(const Board& board) const
+{
+	std::string newPlaces[8] = {};
+
+	newPlaces[0] += char(this->getCurrPlace()[0] - 1);
+	newPlaces[0] += char(this->getCurrPlace()[1] - 1);
+
+	newPlaces[1] += char(this->getCurrPlace()[0] - 1);
+	newPlaces[1] += char(this->getCurrPlace()[1] + 1);
+
+	newPlaces[2] += char(this->getCurrPlace()[0] + 1);
+	newPlaces[2] += char(this->getCurrPlace()[1] + 1);
+
+	newPlaces[3] += char(this->getCurrPlace()[0] + 1);
+	newPlaces[3] += char(this->getCurrPlace()[1] - 1);
+
+	newPlaces[4] += char(this->getCurrPlace()[0] + 1);
+	newPlaces[4] += char(this->getCurrPlace()[1]);
+
+	newPlaces[5] += char(this->getCurrPlace()[0] - 1);
+	newPlaces[5] += char(this->getCurrPlace()[1]);
+
+	newPlaces[6] += char(this->getCurrPlace()[0]);
+	newPlaces[6] += char(this->getCurrPlace()[1] + 1);
+
+	newPlaces[7] += char(this->getCurrPlace()[0]);
+	newPlaces[7] += char(this->getCurrPlace()[1] - 1);
+
+	for (int i = 0; i < 8; i++)  // checking each move 
+	{
+		if (this->checkMove(newPlaces[i], board, true) == gameCodes::validMove) return true;
+	}
+
+	return false;
 }
