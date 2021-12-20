@@ -73,6 +73,20 @@ int main()
 	try
 	{
 		msgToGraphics[0] = (char)(game.MakeMove(msgFromGraphics) + '0');
+
+		// checking victory:
+		if (game.getGameStatus() == gameStatus::BlackWin)
+		{
+			std::cout << "\n\nBlack Player won the match!!!";
+			p.close();
+			return 0;
+		}
+		else if (game.getGameStatus() == gameStatus::whiteWin)
+		{
+			std::cout << "\n\nWhite Player won the match!!!";
+			p.close();
+			return 0;
+		}
 	}
 	catch (const MoveException& moveExc)
 	{
@@ -95,6 +109,7 @@ int main()
 		// get message from graphics
 		msgFromGraphics = p.getMessageFromGraphics();
 	}
+		
 	p.close();
 	return 0;
 }
