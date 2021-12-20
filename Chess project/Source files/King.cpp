@@ -99,7 +99,7 @@ bool King::isCheckMate(char type /* k to check for black king, K for the white *
 			for (int j = 0; j < SIDE_SIZE; j++)
 			{
 				Piece* temp = board(i, j);
-				if (temp && isupper(temp->getType()) != isupper(type))  // checking all of the enemy troops
+				if (temp && isupper(temp->getType()) == isupper(type))  // checking all of the enemy troops
 				{
 					if (temp->canAvoidCheck(board)) return false;
 				}
@@ -158,7 +158,7 @@ bool King::canAvoidCheck(const Board& board) const
 
 	for (int i = 0; i < 8; i++)  // checking each move 
 	{
-		if (this->checkMove(newPlaces[i], board, true) == gameCodes::validMove) return true;
+		if (this->checkMove(newPlaces[i], board) == gameCodes::validMove) return true;
 	}
 
 	return false;

@@ -122,7 +122,7 @@ bool Pawn::canAvoidCheck(const Board& board) const
 
 	for (int i = 0; i < 4; i++)  // checking each move 
 	{
-		if (this->checkMove(newPlaces[i], board, true) == gameCodes::validMove) return true;
+		if (this->checkMove(newPlaces[i], board) == gameCodes::validMove) return true;
 	}
 
 	return false;
