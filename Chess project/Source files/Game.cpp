@@ -40,3 +40,8 @@ gameStatus Game::getGameStatus() const
 {
     return _gameStatus;
 }
+
+void Game::setGameStatus(gameStatus newVal)
+{
+    this->_gameStatus = newVal;
+}

@@ -13,6 +13,7 @@ public:
 	gameCodes MakeMove(std::string moveCode);
 	bool isEnd() const;
 	gameStatus getGameStatus() const;
+	void setGameStatus(gameStatus newVal);
 private:
 	Board _gameBoard;
 	gameStatus _gameStatus;	
