@@ -90,7 +90,7 @@ bool King::isPieceThreatened(char type /* k to check for black king, K for the w
 	return pieceIsThreatened;
 }
 
-bool King::isCheckMate(char type /* k to check for black king, K for the white */, const Board& board)
+bool King::isCheckMate(char type /* k to check for black king, K for the white */, const Board& board, Game* game)
 {
 	if (King::isPieceThreatened(isupper(type) ? 'k' : 'K', board)) // if there is a check
 	{
@@ -105,6 +105,7 @@ bool King::isCheckMate(char type /* k to check for black king, K for the white *
 				}
 			}
 		}
+		game->setGameStatus(isupper(type) ? gameStatus::BlackWin : gameStatus::whiteWin);
 		return true;  // no piece can avoid the check -> checkmate!
 	}
 

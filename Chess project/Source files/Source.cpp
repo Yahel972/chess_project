@@ -63,7 +63,7 @@ int main()
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-	Game game;
+	Game* game = new Game();
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
@@ -72,16 +72,16 @@ int main()
 
 	try
 	{
-		msgToGraphics[0] = (char)(game.MakeMove(msgFromGraphics) + '0');
+		msgToGraphics[0] = (char)(game->MakeMove(msgFromGraphics) + '0');
 
 		// checking victory:
-		if (game.getGameStatus() == gameStatus::BlackWin)
+		if (game->getGameStatus() == gameStatus::BlackWin)
 		{
 			std::cout << "\n\nBlack Player won the match!!!";
 			p.close();
 			return 0;
 		}
-		else if (game.getGameStatus() == gameStatus::whiteWin)
+		else if (game->getGameStatus() == gameStatus::whiteWin)
 		{
 			std::cout << "\n\nWhite Player won the match!!!";
 			p.close();
